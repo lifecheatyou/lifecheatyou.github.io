@@ -140,13 +140,33 @@
             width: 100%;
         }
 
-        /* --- Global Container --- */
-        section {
-            padding: 100px 5%;
-            min-height: 100vh;
+        /* --- Global Container (SPA Section styling) --- */
+        .page-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            padding: 100px 5% 50px 5%;
+            overflow-y: auto;
+            /* Allow scrolling within the section */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
+        }
+
+        .page-section.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+
+        /* Hide footer globally, move it to sections if needed or make it fixed */
+        footer {
+            display: none;
         }
 
         .section-title {
@@ -676,21 +696,39 @@
 <body>
     <!-- Main Background -->
     <div id="bg-main"></div>
+    <!-- Inner Pages Animation Canvas -->
+    <canvas id="inner-bg"></canvas>
+
+    <!-- Terminal Emulator Background (Always behind sections, toggled globally) -->
+    <div class="terminal-container" id="global-terminal">
+        <div class="terminal-header">
+            <div class="terminal-dots">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+            </div>
+            <div class="terminal-title">user@dev-env: ~</div>
+        </div>
+        <div class="terminal-body" id="term-body">
+            <!-- Terminal lines will be injected here via JS -->
+            <div id="term-cursor" class="cursor"></div>
+        </div>
+    </div>
 
     <!-- Navbar -->
     <nav id="navbar">
-        <a href="#" class="nav-logo">Dev.IO</a>
+        <a href="#" class="nav-logo" onclick="navTo('hero')">Dev.IO</a>
         <ul class="nav-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" onclick="navTo('hero')">Home</a></li>
+            <li><a href="#" onclick="navTo('about')">About</a></li>
+            <li><a href="#" onclick="navTo('skills')">Skills</a></li>
+            <li><a href="#" onclick="navTo('projects')">Work</a></li>
+            <li><a href="#" onclick="navTo('contact')">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero">
+    <section id="hero" class="page-section active">
         <!-- Terminal Emulator Background in Hero -->
         <div class="terminal-container" data-aos="zoom-in" data-aos-duration="1200">
             <div class="terminal-header">
@@ -707,7 +745,7 @@
             </div>
         </div>
 
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+        <div class="hero-content">
             <div class="glitch-wrapper">
                 <h1 class="hero-title">System Ready.</h1>
             </div>
@@ -718,17 +756,16 @@
                 exceptional user experience.
             </p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View Output</a>
-                <a href="#contact" class="btn btn-outline">Ping Me</a>
+                <a href="#" class="btn btn-primary" onclick="navTo('projects')">View Output</a>
+                <a href="#" class="btn btn-outline" onclick="navTo('contact')">Ping Me</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title" data-aos="fade-up">About User</h2>
+    <section id="about" class="page-section">
+        <h2 class="section-title">About User</h2>
         <div class="about-grid">
-            <div class="glass-card about-text" data-aos="fade-right" data-aos-delay="200">
+            <div class="glass-card about-text">
                 <h3 style="color: var(--text-main); margin-bottom: 1.5rem; font-size: 1.4rem;">
                     <i class="fa-solid fa-microchip" style="color: var(--primary); margin-right: 10px;"></i>
                     Architecture & Logic
@@ -740,8 +777,7 @@
                 <p>Always exploring the latest IT trends to build solutions that are not just functional, but
                     future-proof.</p>
             </div>
-            <div class="glass-card" data-aos="fade-left" data-aos-delay="400"
-                style="background: transparent; border: none; box-shadow: none;">
+            <div class="glass-card" style="background: transparent; border: none; box-shadow: none;">
                 <div class="stats-grid">
                     <div class="stat-item">
                         <div class="stat-num">3+</div>
@@ -765,9 +801,9 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title" data-aos="fade-up">Tech Stack</h2>
-        <div class="glass-card skills-container" data-aos="zoom-in" data-aos-delay="200">
+    <section id="skills" class="page-section">
+        <h2 class="section-title">Tech Stack</h2>
+        <div class="glass-card skills-container">
             <div class="skill-category">
                 <h3><i class="fa-solid fa-layer-group" style="color: var(--primary); margin-right: 8px;"></i> Frontend
                 </h3>
@@ -806,11 +842,11 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title" data-aos="fade-up">Executables</h2>
+    <section id="projects" class="page-section">
+        <h2 class="section-title">Executables</h2>
         <div class="projects-grid">
             <!-- Project 1 -->
-            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-card">
                 <div class="project-img">
                     <i class="fa-solid fa-diagram-project"></i>
                 </div>
@@ -828,7 +864,7 @@
                 </div>
             </div>
             <!-- Project 2 -->
-            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-card">
                 <div class="project-img">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
@@ -845,7 +881,7 @@
                 </div>
             </div>
             <!-- Project 3 -->
-            <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="project-card">
                 <div class="project-img">
                     <i class="fa-solid fa-robot"></i>
                 </div>
@@ -866,9 +902,9 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title" data-aos="fade-up">Connection Request</h2>
-        <div class="glass-card contact-card" data-aos="zoom-in">
+    <section id="contact" class="page-section">
+        <h2 class="section-title">Connection Request</h2>
+        <div class="glass-card contact-card">
             <h3 style="font-family: 'Space Grotesk'; font-size: 2rem; margin-bottom: 1rem; color: var(--text-main);">
                 Let's Build Something.</h3>
             <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.1rem;">
@@ -891,25 +927,44 @@
     </footer>
 
     <!-- Scripts -->
-    <!-- AOS Animate On Scroll -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
-        // Initialize AOS
-        AOS.init({
-            once: true,
-            offset: 100,
-            duration: 800,
-        });
+        // SPA Navigation Logic
+        function navTo(pageId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
 
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
+            // Show target section
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.classList.add('active');
+                target.scrollTop = 0; // Reset scroll position for that page
             }
+
+            // Handle Background Toggle
+            const terminal = document.getElementById('global-terminal');
+            const innerBg = document.getElementById('inner-bg');
+
+            if (pageId === 'hero') {
+                terminal.classList.remove('hidden');
+                innerBg.classList.remove('active');
+            } else {
+                terminal.classList.add('hidden');
+                innerBg.classList.add('active');
+            }
+        }
+
+        // Navbar Styling on internal wrap scroll
+        document.querySelectorAll('.page-section').forEach(sec => {
+            sec.addEventListener('scroll', (e) => {
+                const nav = document.getElementById('navbar');
+                if (e.target.scrollTop > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
         });
 
         // Terminal Typing Effect Script
@@ -995,6 +1050,70 @@
 
         // Start animation after a short delay
         setTimeout(runTerminal, 1500);
+
+        // --- Inner Page Particle Network Canvas Animation ---
+        const innerCanvas = document.getElementById('inner-bg');
+        const ctxBg = innerCanvas.getContext('2d');
+        let innerParticles = [];
+
+        function initInnerBg() {
+            innerCanvas.width = window.innerWidth;
+            innerCanvas.height = window.innerHeight;
+            innerParticles = [];
+            const particleCount = Math.floor(window.innerWidth / 15);
+
+            for (let i = 0; i < particleCount; i++) {
+                innerParticles.push({
+                    x: Math.random() * innerCanvas.width,
+                    y: Math.random() * innerCanvas.height,
+                    vx: (Math.random() - 0.5) * 1.5,
+                    vy: (Math.random() - 0.5) * 1.5,
+                    radius: Math.random() * 2 + 1
+                });
+            }
+        }
+
+        function drawInnerBg() {
+            ctxBg.clearRect(0, 0, innerCanvas.width, innerCanvas.height);
+
+            // Draw particles
+            ctxBg.fillStyle = 'rgba(37, 99, 235, 0.4)'; // Primary blue
+            innerParticles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Bounce off edges
+                if (p.x < 0 || p.x > innerCanvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > innerCanvas.height) p.vy *= -1;
+
+                ctxBg.beginPath();
+                ctxBg.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctxBg.fill();
+            });
+
+            // Draw connecting lines
+            ctxBg.strokeStyle = 'rgba(37, 99, 235, 0.1)';
+            for (let i = 0; i < innerParticles.length; i++) {
+                for (let j = i + 1; j < innerParticles.length; j++) {
+                    const dx = innerParticles[i].x - innerParticles[j].x;
+                    const dy = innerParticles[i].y - innerParticles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        ctxBg.beginPath();
+                        ctxBg.moveTo(innerParticles[i].x, innerParticles[i].y);
+                        ctxBg.lineTo(innerParticles[j].x, innerParticles[j].y);
+                        ctxBg.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawInnerBg);
+        }
+
+        window.addEventListener('resize', initInnerBg);
+        initInnerBg();
+        drawInnerBg();
+
     </script>
 </body>
 
