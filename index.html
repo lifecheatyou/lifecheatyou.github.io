@@ -62,15 +62,16 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* --- Canvas Typewriter Background --- */
-        #bg-canvas {
+        /* --- Background --- */
+        #bg-main {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: #000000;
+            background: var(--bg-base);
+            /* Clean white slate */
         }
 
         /* --- Navbar --- */
@@ -257,6 +258,123 @@
         .btn-outline:hover {
             background: rgba(37, 99, 235, 0.05);
             transform: translateY(-3px);
+        }
+
+        /* --- Terminal Emulator (Hero Background Element) --- */
+        .terminal-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 900px;
+            height: 60vh;
+            background: #0f172a;
+            /* Deep dark blue/black slate */
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0.85;
+            /* Blend with the clean white slightly */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .terminal-header {
+            background: #1e293b;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ef4444;
+        }
+
+        .dot-yellow {
+            background: #eab308;
+        }
+
+        .dot-green {
+            background: #22c55e;
+        }
+
+        .terminal-title {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin: 0 auto;
+            transform: translateX(-24px);
+            /* Offset the dots width for true center */
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            color: #22c55e;
+            /* Hacker green text */
+            height: calc(100% - 40px);
+            overflow-y: hidden;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .terminal-line {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .prompt {
+            color: #38bdf8;
+            /* Blue prompt color */
+            margin-right: 8px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: #22c55e;
+            vertical-align: middle;
+            animation: terminalBlink 1s step-end infinite;
+        }
+
+        @keyframes terminalBlink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Hero content text adjustment over terminal */
+        #hero .hero-content {
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         /* --- About Section (Glassmorphism Cards) --- */
@@ -556,8 +674,8 @@
 </head>
 
 <body>
-    <!-- Canvas Background -->
-    <canvas id="bg-canvas"></canvas>
+    <!-- Main Background -->
+    <div id="bg-main"></div>
 
     <!-- Navbar -->
     <nav id="navbar">
@@ -573,7 +691,23 @@
 
     <!-- Hero Section -->
     <section id="hero">
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+        <!-- Terminal Emulator Background in Hero -->
+        <div class="terminal-container" data-aos="zoom-in" data-aos-duration="1200">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot dot-red"></div>
+                    <div class="dot dot-yellow"></div>
+                    <div class="dot dot-green"></div>
+                </div>
+                <div class="terminal-title">user@dev-env: ~</div>
+            </div>
+            <div class="terminal-body" id="term-body">
+                <!-- Terminal lines will be injected here via JS -->
+                <div id="term-cursor" class="cursor"></div>
+            </div>
+        </div>
+
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <div class="glitch-wrapper">
                 <h1 class="hero-title">System Ready.</h1>
             </div>
@@ -778,76 +912,89 @@
             }
         });
 
-        // Matrix Code Typing Background
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
+        // Terminal Typing Effect Script
+        const termBody = document.getElementById('term-body');
+        const termCursor = document.getElementById('term-cursor');
 
-        let width, height;
-        let columns = [];
-        const fontSize = 14;
-
-        // Code snippets to display
-        const codeSnippets = [
-            "root@linux:~# ls -la", "root@linux:~# top", "root@linux:~# pwd", "root@linux:~# cat /var/log/syslog",
-            "root@linux:~# ping 8.8.8.8", "root@linux:~# ssh user@10.0.0.1", "root@linux:~# docker ps -a",
-            "root@linux:~# systemctl restart nginx", "root@linux:~# htop", "root@linux:~# chmod +x script.sh",
-            "root@linux:~# tail -f /var/log/auth.log", "root@linux:~# apt-get update"
+        const commands = [
+            { text: "ssh dev@server.local", out: "Authenticating...\nWelcome to Ubuntu 22.04.2 LTS!" },
+            { text: "git status", out: "On branch main\nYour branch is up to date.\nnothing to commit, working tree clean" },
+            { text: "docker-compose up -d", out: "Creating network 'app_network'\nStarting db-server ... done\nStarting web-api ... done" },
+            { text: "npm run test", out: "PASS test/app.test.js\nPASS test/utils.test.js\nTest Suites: 2 passed, 2 total\nTests: 14 passed, 14 total" },
+            { text: "echo 'Initiating neural link...'", out: "Initiating neural link...\nConnection established." },
+            { text: "./deploy.sh --prod", out: "Deploying to production environment...\nBuilding assets...\nUploading 150 files...\nDeployment successful. Site is live." },
+            { text: "cat system_status.log", out: "Memory: 32% (16GB/64GB)\nCPU Load: [||||      ] 24%\nUptime: 45 days, 12:04:02\nAll systems functional." }
         ];
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+        let lineDelay = 50; // Typing speed per character
+        let commandIndex = 0;
 
-            const colCount = Math.floor(width / (fontSize * 3));
-            columns = [];
-            for (let i = 0; i < colCount; i++) {
-                columns[i] = {
-                    x: i * fontSize * 3 + Math.random() * fontSize,
-                    y: Math.random() * height - height,
-                    speed: 0.5 + Math.random() * 1.5,
-                    text: codeSnippets[Math.floor(Math.random() * codeSnippets.length)],
-                    charIndex: 0,
-                    opacity: 0.1 + Math.random() * 0.4
-                };
+        async function typeText(text, container, isCommand = true) {
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+
+            if (isCommand) {
+                const prompt = document.createElement('span');
+                prompt.className = 'prompt';
+                prompt.textContent = 'user@dev-env:~$';
+                line.appendChild(prompt);
+            }
+
+            const content = document.createElement('span');
+            line.appendChild(content);
+
+            container.insertBefore(line, termCursor);
+
+            // Auto-scroll to bottom
+            container.scrollTop = container.scrollHeight;
+
+            for (let i = 0; i < text.length; i++) {
+                if (text[i] === '\n') {
+                    // Handle line breaks in output
+                    const br = document.createElement('br');
+                    content.appendChild(br);
+                } else {
+                    content.textContent += text[i];
+                }
+
+                container.scrollTop = container.scrollHeight;
+                await new Promise(r => setTimeout(r, isCommand ? lineDelay : lineDelay / 5));
             }
         }
 
-        window.addEventListener('resize', resize);
-        resize();
+        async function runTerminal() {
+            while (true) {
+                const cmd = commands[commandIndex];
 
-        function draw() {
-            // Fade out the previous frame slightly to create a trail effect
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Black background with alpha
-            ctx.fillRect(0, 0, width, height);
+                // Type command
+                await typeText(cmd.text, termBody, true);
 
-            ctx.font = `500 ${fontSize}px 'Space Grotesk', monospace`;
+                // Wait briefly before output
+                await new Promise(r => setTimeout(r, 400));
 
-            for (let i = 0; i < columns.length; i++) {
-                const col = columns[i];
+                // Print output fast
+                await typeText(cmd.out, termBody, false);
 
-                // Set text color (Hacker Green with varying opacity)
-                ctx.fillStyle = `rgba(0, 255, 0, ${col.opacity})`;
+                // Wait before next command
+                await new Promise(r => setTimeout(r, 1500));
 
-                // Draw characters one by one to simulate typing
-                const currentText = col.text.substring(0, Math.floor(col.charIndex));
-                ctx.fillText(currentText, col.x, col.y);
+                commandIndex++;
 
-                col.y += col.speed;
-                col.charIndex += col.speed * 0.1;
-
-                // Reset column if it goes off screen or completes typing
-                if (col.y > height && Math.random() > 0.98) {
-                    col.y = -50;
-                    col.charIndex = 0;
-                    col.text = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-                    col.opacity = 0.1 + Math.random() * 0.4;
-                    col.speed = 0.5 + Math.random() * 1.5;
+                // Reset terminal if reaching the end
+                if (commandIndex >= commands.length) {
+                    commandIndex = 0;
+                    // Keep only the cursor, clear old text
+                    while (termBody.firstChild !== termCursor) {
+                        termBody.removeChild(termBody.firstChild);
+                    }
+                    // Small delay before starting over
+                    await new Promise(r => setTimeout(r, 1000));
                 }
             }
-            requestAnimationFrame(draw);
         }
 
-        draw();
+        // Start animation after a short delay
+        setTimeout(runTerminal, 1500);
     </script>
 </body>
 
