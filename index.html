@@ -70,7 +70,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: var(--bg-base);
+            background: #000000;
         }
 
         /* --- Navbar --- */
@@ -788,10 +788,10 @@
 
         // Code snippets to display
         const codeSnippets = [
-            "function init() {", "return true;", "const x = 42;", "await fetch('/api');",
-            "if (data.isValid)", "console.log('OK');", "div.appendChild(el);",
-            "export default App;", "npm run build", "git commit -m", "try { ... } catch (e)",
-            "{status: 200}", "import React from 'react';"
+            "root@linux:~# ls -la", "root@linux:~# top", "root@linux:~# pwd", "root@linux:~# cat /var/log/syslog",
+            "root@linux:~# ping 8.8.8.8", "root@linux:~# ssh user@10.0.0.1", "root@linux:~# docker ps -a",
+            "root@linux:~# systemctl restart nginx", "root@linux:~# htop", "root@linux:~# chmod +x script.sh",
+            "root@linux:~# tail -f /var/log/auth.log", "root@linux:~# apt-get update"
         ];
 
         function resize() {
@@ -817,7 +817,7 @@
 
         function draw() {
             // Fade out the previous frame slightly to create a trail effect
-            ctx.fillStyle = 'rgba(248, 250, 252, 0.1)'; // Matches --bg-base, with alpha
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Black background with alpha
             ctx.fillRect(0, 0, width, height);
 
             ctx.font = `500 ${fontSize}px 'Space Grotesk', monospace`;
@@ -825,8 +825,8 @@
             for (let i = 0; i < columns.length; i++) {
                 const col = columns[i];
 
-                // Set text color (Primary blue with varying opacity)
-                ctx.fillStyle = `rgba(37, 99, 235, ${col.opacity})`;
+                // Set text color (Hacker Green with varying opacity)
+                ctx.fillStyle = `rgba(0, 255, 0, ${col.opacity})`;
 
                 // Draw characters one by one to simulate typing
                 const currentText = col.text.substring(0, Math.floor(col.charIndex));
