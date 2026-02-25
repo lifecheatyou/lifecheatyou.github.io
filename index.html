@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>용산 맛집 용문비급</title>
+    <!-- Google Fonts: 전통적인 느낌을 위한 명조체 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Home Screen (Intro) -->
+        <section id="intro" class="screen active">
+            <div class="image-container">
+                <div class="intro-bg"></div>
+                <!-- Invisible clickable region over the book in the background image -->
+                <div id="book-hotspot" class="hotspot" title="용문비급 열어보기">
+                    <div class="hotspot-glow"></div>
+                </div>
+            </div>
+            <div class="content-wrapper">
+                <h1 class="title">龍門秘笈</h1>
+                <p class="subtitle">용산의 숨겨진 맛을 찾아서</p>
+            </div>
+        </section>
+
+        <!-- Map Screen (Revealed after opening the book) -->
+        <section id="map-view" class="screen">
+            <div class="map-bg">
+                <!-- Map markers -->
+                <!-- 1. 창성옥 -->
+                <a href="https://map.naver.com/p/entry/place/19873649?c=15.00,0,0,0,dh&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202602251457&locale=ko&svcName=map_pcv5"
+                    target="_blank" class="map-pin" id="pin-1">
+                    <div class="pin-marker"></div>
+                    <div class="pin-label">창성옥</div>
+                    <div class="pin-tooltip">50년이상 시장을 지켜온 선지뼈해장국집</div>
+                </a>
+
+                <!-- 2. 이조순대국 -->
+                <a href="https://map.naver.com/p/entry/place/34138448?c=15.00,0,0,0,dh&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202602251457&locale=ko&svcName=map_pcv5"
+                    target="_blank" class="map-pin" id="pin-2">
+                    <div class="pin-marker"></div>
+                    <div class="pin-label">이조순대국</div>
+                    <div class="pin-tooltip">성시경의 먹을텐데에도 나온 숨은 맛집</div>
+                </a>
+
+                <!-- 3. 용문갈비 -->
+                <a href="https://map.naver.com/p/entry/place/18722061?c=15.00,0,0,0,dh&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202602251458&locale=ko&svcName=map_pcv5"
+                    target="_blank" class="map-pin" id="pin-3">
+                    <div class="pin-marker"></div>
+                    <div class="pin-label">용문갈비</div>
+                    <div class="pin-tooltip">50년이상 자리를 지킨 용문시장 대표 노포스타일 갈비집</div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Screen Transition Overlay -->
+    <div id="transition-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

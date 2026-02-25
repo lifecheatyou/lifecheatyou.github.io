@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+    background-color: #1a1a1a;
+    color: #e5e5e5;
+    overflow: hidden;
+    /* Prevent scroll on both screens */
+}
+
+#app {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+}
+
+/* --- Home Screen --- */
+#intro {
+    background: url('final_chef_bg.png') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Blurred backdrop filler for empty margins */
+#intro::before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background: inherit;
+    filter: blur(25px) brightness(0.6);
+    z-index: -1;
+}
+
+/* Ensure the container is perfectly square to match the generated image, 
+   scaling to fit within the viewport without cropping */
+.image-container {
+    position: absolute;
+    width: 100vmin;
+    height: 100vmin;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 0;
+}
+
+.intro-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('final_chef_bg.png') center/contain no-repeat;
+    /* Breathing animation for the character background */
+    animation: characterBreathe 4s infinite ease-in-out;
+}
+
+/* Invisible Hotspot for the book in the background */
+.hotspot {
+    position: absolute;
+    /* Move down to align with the book in the chef's hands */
+    top: 65%;
+    left: 50%;
+    width: 35%;
+    height: 25%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.hotspot:hover .hotspot-glow {
+    opacity: 1;
+}
+
+.hotspot-glow {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 40px 20px rgba(255, 215, 0, 0.4);
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.hotspot.open .hotspot-glow {
+    opacity: 1;
+    animation: flashOut 2s forwards;
+}
+
+@keyframes pulseGlow {
+    from {
+        opacity: 0.3;
+    }
+
+    to {
+        opacity: 0.7;
+    }
+}
+
+.intro-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1;
+}
+
+@keyframes characterBreathe {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    /* Added backdrop to make text readable against the light hanbok background */
+    background: rgba(0, 0, 0, 0.65);
+    padding: 30px 50px;
+    border-radius: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #f7e0bc;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    margin-bottom: 1rem;
+    letter-spacing: 5px;
+    background: linear-gradient(to bottom, #fff, #d4af37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #cccccc;
+    margin-bottom: 3rem;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes flashOut {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 40px 20px rgba(255, 215, 0, 0.4);
+        background: rgba(255, 215, 0, 0.1);
+    }
+
+    50% {
+        transform: scale(3);
+        box-shadow: 0 0 200px 100px rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    100% {
+        transform: scale(10);
+        box-shadow: 0 0 500px 500px rgba(255, 255, 255, 1);
+        background: rgba(255, 255, 255, 1);
+    }
+}
+
+/* --- Map Screen --- */
+#map-view {
+    background: url('oriental_map_bg.png') center/cover no-repeat, #d7c9aa;
+}
+
+.map-bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Apply a slight sepia filter overlay to enforce oriental style if image needs it */
+    box-shadow: inset 0 0 150px rgba(50, 30, 10, 0.8);
+}
+
+/* --- Map Pins --- */
+.map-pin {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    z-index: 5;
+}
+
+.map-pin:hover {
+    transform: scale(1.15) translateY(-5px);
+    z-index: 10;
+}
+
+.pin-marker {
+    width: 25px;
+    height: 25px;
+    background: #ef4444;
+    /* Bright red */
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    border: 2px solid #5a1d1d;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.pin-marker::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffa1a1;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+}
+
+.pin-label {
+    margin-top: 8px;
+    background: rgba(25, 20, 15, 0.85);
+    color: #f7e0bc;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 1px solid #d4af37;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.pin-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, -15px);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 15;
+    pointer-events: none;
+}
+
+.pin-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
+}
+
+.map-pin:hover .pin-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -25px);
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-45deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+}
+
+/* Positioning Pins */
+/* Note: These coordinates are placeholders. They simulate a mapped area */
+#pin-1 {
+    top: 20%;
+    left: 30%;
+}
+
+#pin-2 {
+    top: 60%;
+    left: 45%;
+}
+
+#pin-3 {
+    top: 35%;
+    left: 70%;
+}
+
+/* --- Transition Overlay --- */
+#transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#transition-overlay.fade-in {
+    opacity: 1;
+}
