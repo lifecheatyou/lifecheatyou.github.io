@@ -62,15 +62,15 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* --- Canvas Particle Background --- */
-        #particles-js {
+        /* --- Canvas Typewriter Background --- */
+        #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%);
+            background: var(--bg-base);
         }
 
         /* --- Navbar --- */
@@ -556,8 +556,8 @@
 </head>
 
 <body>
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
+    <!-- Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
 
     <!-- Navbar -->
     <nav id="navbar">
@@ -757,8 +757,6 @@
     </footer>
 
     <!-- Scripts -->
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <!-- AOS Animate On Scroll -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
@@ -780,45 +778,76 @@
             }
         });
 
-        // Initialize Particles.js (Light IT/Network Theme)
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 70, "density": { "enable": true, "value_area": 900 } },
-                "color": { "value": ["#2563eb", "#38bdf8", "#94a3b8"] },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": false },
-                "size": { "value": 3, "random": true },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#94a3b8",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 1.5,
-                    "direction": "none",
-                    "random": true,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
+        // Matrix Code Typing Background
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let columns = [];
+        const fontSize = 14;
+
+        // Code snippets to display
+        const codeSnippets = [
+            "function init() {", "return true;", "const x = 42;", "await fetch('/api');",
+            "if (data.isValid)", "console.log('OK');", "div.appendChild(el);",
+            "export default App;", "npm run build", "git commit -m", "try { ... } catch (e)",
+            "{status: 200}", "import React from 'react';"
+        ];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+
+            const colCount = Math.floor(width / (fontSize * 3));
+            columns = [];
+            for (let i = 0; i < colCount; i++) {
+                columns[i] = {
+                    x: i * fontSize * 3 + Math.random() * fontSize,
+                    y: Math.random() * height - height,
+                    speed: 0.5 + Math.random() * 1.5,
+                    text: codeSnippets[Math.floor(Math.random() * codeSnippets.length)],
+                    charIndex: 0,
+                    opacity: 0.1 + Math.random() * 0.4
+                };
+            }
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        function draw() {
+            // Fade out the previous frame slightly to create a trail effect
+            ctx.fillStyle = 'rgba(248, 250, 252, 0.1)'; // Matches --bg-base, with alpha
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.font = `500 ${fontSize}px 'Space Grotesk', monospace`;
+
+            for (let i = 0; i < columns.length; i++) {
+                const col = columns[i];
+
+                // Set text color (Primary blue with varying opacity)
+                ctx.fillStyle = `rgba(37, 99, 235, ${col.opacity})`;
+
+                // Draw characters one by one to simulate typing
+                const currentText = col.text.substring(0, Math.floor(col.charIndex));
+                ctx.fillText(currentText, col.x, col.y);
+
+                col.y += col.speed;
+                col.charIndex += col.speed * 0.1;
+
+                // Reset column if it goes off screen or completes typing
+                if (col.y > height && Math.random() > 0.98) {
+                    col.y = -50;
+                    col.charIndex = 0;
+                    col.text = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+                    col.opacity = 0.1 + Math.random() * 0.4;
+                    col.speed = 0.5 + Math.random() * 1.5;
                 }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": { "enable": true, "mode": "grab" },
-                    "onclick": { "enable": true, "mode": "push" },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": { "distance": 160, "line_linked": { "opacity": 0.8, "color": "#2563eb" } },
-                    "push": { "particles_nb": 3 }
-                }
-            },
-            "retina_detect": true
-        });
+            }
+            requestAnimationFrame(draw);
+        }
+
+        draw();
     </script>
 </body>
 
