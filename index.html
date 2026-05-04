@@ -1,71 +1,359 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>용산 맛집 용문비급</title>
-    <!-- Google Fonts: 전통적인 느낌을 위한 명조체 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@400;700;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sung-Jae Han | Cloud Infrastructure Engineer</title>
+  <meta name="description" content="Cloud & Infrastructure Engineer portfolio of Sung-Jae Han" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:     #0d1117; --bg2: #161b22; --bg3: #21262d;
+      --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+      --accent: #38bdf8; --accent2: #34d399; --radius: 10px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter','Noto Sans KR',sans-serif; font-size: 16px; line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(13,17,23,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px;
+    }
+    .nav-logo { font-family: 'JetBrains Mono',monospace; font-size: 1rem; color: var(--accent); font-weight: 500; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* LAYOUT */
+    section { padding: 6rem 0; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    .section-label { font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
+    .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+
+    /* HERO */
+    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 60px; }
+    .hero-greeting { font-family: 'JetBrains Mono',monospace; color: var(--accent); font-size: 1rem; margin-bottom: 1.5rem; }
+    .hero-name { font-size: clamp(2.5rem,6vw,4rem); font-weight: 700; line-height: 1.15; margin-bottom: .5rem; }
+    .hero-name-en { font-size: clamp(1rem,2.5vw,1.3rem); color: var(--muted); font-weight: 300; margin-bottom: 1.5rem; font-family: 'JetBrains Mono',monospace; }
+    .hero-role { font-size: clamp(1.1rem,2.5vw,1.5rem); color: var(--accent2); font-weight: 500; margin-bottom: 1.5rem; }
+    .hero-desc { color: var(--muted); max-width: 560px; font-size: 1.05rem; margin-bottom: 2.5rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem 1.4rem; border-radius: var(--radius); font-size: .9rem; font-weight: 500; cursor: pointer; transition: all .2s; border: 1px solid transparent; }
+    .btn-primary { background: var(--accent); color: #0d1117; border-color: var(--accent); }
+    .btn-primary:hover { background: #7dd3fc; border-color: #7dd3fc; text-decoration: none; color: #0d1117; }
+    .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    /* TERMINAL */
+    .terminal { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; font-family: 'JetBrains Mono',monospace; font-size: .85rem; margin-top: 3rem; max-width: 560px; }
+    .terminal-bar { display: flex; gap: .5rem; margin-bottom: 1rem; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
+    .t-prompt { color: var(--accent2); } .t-cmd { color: var(--text); } .t-out { color: var(--muted); } .t-key { color: var(--accent); }
+    .t-line { margin: .3rem 0; }
+    .t-cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); animation: blink 1s step-end infinite; vertical-align: text-bottom; margin-left: 2px; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+    .about-text p strong { color: var(--text); }
+    .about-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .about-card h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); font-family: 'JetBrains Mono',monospace; margin-bottom: 1rem; }
+    .about-card ul { list-style: none; }
+    .about-card li { color: var(--muted); font-size: .9rem; padding: .35rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: .6rem; }
+    .about-card li:last-child { border-bottom: none; }
+    .about-card li::before { content: "\25B9"; color: var(--accent2); flex-shrink: 0; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 1.5rem; }
+    .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .skill-group h4 { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); font-family: 'JetBrains Mono',monospace; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { background: var(--bg3); border: 1px solid var(--border); color: var(--text); font-size: .8rem; padding: .25rem .65rem; border-radius: 20px; font-family: 'JetBrains Mono',monospace; }
+    .tag.accent  { border-color: var(--accent);  color: var(--accent); }
+    .tag.accent2 { border-color: var(--accent2); color: var(--accent2); }
+
+    /* CERT */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 1.5rem; }
+    .cert-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: border-color .2s; }
+    .cert-card:hover { border-color: var(--accent); }
+    .cert-icon { font-size: 2rem; flex-shrink: 0; width: 52px; height: 52px; background: var(--bg3); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .cert-info h4 { font-size: 1rem; font-weight: 600; margin-bottom: .25rem; }
+    .cert-info p  { font-size: .85rem; color: var(--muted); }
+    .cert-badge { display: inline-block; margin-top: .5rem; font-size: .7rem; font-family: 'JetBrains Mono',monospace; color: var(--accent2); background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.3); padding: .15rem .5rem; border-radius: 4px; }
+
+    /* PROJECTS */
+    .project-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; transition: border-color .2s, transform .2s; }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .project-title { font-size: 1.25rem; font-weight: 700; }
+    .project-links { display: flex; gap: .75rem; flex-shrink: 0; }
+    .project-links a { font-size: .8rem; color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: .3rem .8rem; transition: all .2s; display: flex; align-items: center; gap: .4rem; }
+    .project-links a:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+    .project-desc { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+    .project-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    .metric { background: var(--bg3); border-radius: 8px; padding: 1rem; text-align: center; }
+    .metric-val { font-size: 1.4rem; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono',monospace; }
+    .metric-label { font-size: .75rem; color: var(--muted); margin-top: .25rem; }
+    .project-roles h5 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); margin-bottom: .75rem; font-family: 'JetBrains Mono',monospace; }
+    .project-roles ul { list-style: none; }
+    .project-roles li { color: var(--muted); font-size: .9rem; padding: .2rem 0; display: flex; align-items: flex-start; gap: .6rem; }
+    .project-roles li::before { content: "\25B9"; color: var(--accent); flex-shrink: 0; margin-top: .25rem; }
+
+    /* CONTACT */
+    .contact-inner { text-align: center; max-width: 540px; margin: 0 auto; }
+    .contact-inner p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; font-size: .85rem; color: var(--muted); font-family: 'JetBrains Mono',monospace; }
+
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      nav .nav-links { display: none; }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="app">
-        <!-- Home Screen (Intro) -->
-        <section id="intro" class="screen active">
-            <div class="image-container">
-                <div class="intro-bg"></div>
-                <!-- Invisible clickable region over the book in the background image -->
-                <div id="book-hotspot" class="hotspot" title="용문비급 열어보기">
-                    <div class="hotspot-glow"></div>
-                </div>
-            </div>
-            <div class="content-wrapper">
-                <h1 class="title">龍門秘笈</h1>
-                <p class="subtitle">용산의 숨겨진 맛을 찾아서</p>
-            </div>
-        </section>
 
-        <!-- Map Screen (Revealed after opening the book) -->
-        <section id="map-view" class="screen">
-            <div class="map-bg">
-                <!-- Map markers -->
-                <!-- 1. 창성옥 -->
-                <a href="https://map.naver.com/p/entry/place/19873649?c=15.00,0,0,0,dh&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202602251457&locale=ko&svcName=map_pcv5"
-                    target="_blank" class="map-pin" id="pin-1">
-                    <div class="pin-marker"></div>
-                    <div class="pin-label">창성옥</div>
-                    <div class="pin-tooltip">50년이상 시장을 지켜온 선지뼈해장국집</div>
-                </a>
+<nav>
+  <span class="nav-logo">sjhan@portfolio:~$</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-                <!-- 2. 이조순대국 -->
-                <a href="https://map.naver.com/p/entry/place/34138448?c=15.00,0,0,0,dh&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202602251457&locale=ko&svcName=map_pcv5"
-                    target="_blank" class="map-pin" id="pin-2">
-                    <div class="pin-marker"></div>
-                    <div class="pin-label">이조순대국</div>
-                    <div class="pin-tooltip">성시경의 먹을텐데에도 나온 숨은 맛집</div>
-                </a>
-
-                <!-- 3. 용문갈비 -->
-                <a href="https://map.naver.com/p/entry/place/18722061?c=15.00,0,0,0,dh&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202602251458&locale=ko&svcName=map_pcv5"
-                    target="_blank" class="map-pin" id="pin-3">
-                    <div class="pin-marker"></div>
-                    <div class="pin-label">용문갈비</div>
-                    <div class="pin-tooltip">50년이상 자리를 지킨 용문시장 대표 노포스타일 갈비집</div>
-                </a>
-            </div>
-        </section>
+<section id="hero">
+  <div class="container">
+    <p class="hero-greeting">$ whoami</p>
+    <h1 class="hero-name">&#54620;&#49849;&#51116;</h1>
+    <p class="hero-name-en">Sung-Jae Han</p>
+    <p class="hero-role">Cloud &amp; Infrastructure Engineer</p>
+    <p class="hero-desc">
+      &#50728;&#54532;&#47112;&#48―&#48―&#49828;&#48―&#53804; AWS &#47213;&#54°&#47532;&#51204;&#44619;&#44620;&#51648;, &#51064;&#54532;&#46972; &#51204; &#44228;&#52216;&#51012; &#51649;&#51217; &#49444;&#44228;&#54616;&#44256; &#44396;&#52628;&#54633;&#45768;&#45796;.<br />
+      Terraform &middot; Ansible &middot; Kubernetes&#47196; &#51116;&#54788; &#44032;&#45733;&#54620; &#51064;&#54532;&#46972;&#47484; &#47564;&#46069;&#45768;&#45796;.
+    </p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#projects">&#54532;&#47196;&#51204;&#53944; &#48372;&#44592;</a>
+      <a class="btn btn-outline" href="https://github.com/lifecheatyou" target="_blank">GitHub</a>
+      <a class="btn btn-outline" href="#contact">&#50672;&#46973;&#54616;&#44592;</a>
     </div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+      </div>
+      <div class="t-line"><span class="t-prompt">sjhan@local</span><span class="t-cmd"> ~ % cat stack.txt</span></div>
+      <div class="t-line"><span class="t-key">IaC        </span><span class="t-out">&#8594; Terraform &middot; Ansible</span></div>
+      <div class="t-line"><span class="t-key">Container  </span><span class="t-out">&#8594; Kubernetes &middot; Docker &middot; Harbor</span></div>
+      <div class="t-line"><span class="t-key">Cloud      </span><span class="t-out">&#8594; AWS (EKS &middot; RDS &middot; VPC &middot; Route53)</span></div>
+      <div class="t-line"><span class="t-key">Monitoring </span><span class="t-out">&#8594; Prometheus &middot; Grafana &middot; Loki</span></div>
+      <div class="t-line"><span class="t-key">OS         </span><span class="t-out">&#8594; RHEL &middot; Ubuntu</span></div>
+      <div class="t-line" style="margin-top:.6rem">
+        <span class="t-prompt">sjhan@local</span><span class="t-cmd"> ~ % </span><span class="t-cursor"></span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Screen Transition Overlay -->
-    <div id="transition-overlay"></div>
+<section id="about">
+  <div class="container">
+    <p class="section-label">// about</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>&#51204; &#51649;&#51109;&#50640;&#49436; <strong>&#54924;&#44228; &#45813;&#45813;&#51088;</strong>&#47196; &#51068;&#54616;&#46358; &#51473;, &#50672;&#47568;&#51221;&#49328; &#47560;&#44048;&#51068;&#50640; &#54253;&#53469;&#49828; &#49436;&#48708;&#49828;&#44032; &#49688; &#49884;&#44036; &#51109;&#50528;&#47484; &#44192;&#45716; &#49345;&#54889;&#51012; &#51649;&#51217; &#44221;&#54èa;&#54831;&#49845;&#45768;&#45796;. &#49436;&#48260;&#44032; &#��&#48373;&#46104;&#44592;&#47564;&#51012; &#44592;&#45796;&#47532;&#45716; &#44536; &#47924;&#47141;&#54632;&#51060; &#53364;&#46972;&#50864;&#46300; &#51064;&#54532;&#46972; &#44277;&#48512;&#47484; &#49884;&#51089;&#54620; &#44228;&#44592;&#44032; &#46112;&#45796;.&#50500;.</p>
+        <p>&#54788;&#51116;&#45716; <strong>&#50728;&#54532;&#47112;&#48―&#48―&#49828; &#8596; AWS &#54616;&#51060;&#48652;&#47532;&#46300; &#51064;&#54532;&#46972;</strong> &#49444;&#44228;&#50752; &#44396;&#52628;&#50640; &#51665;&#51473;&#54616;&#44256; &#51080;&#49845;&#45768;&#45796;. Terraform&#51004;&#47196; &#51064;&#54532;&#46972;&#47484; &#53076;&#46300;&#47196; &#44288;&#47532;&#54616;&#44256;, Kubernetes &#50948;&#50640;&#49436; &#49436;&#48708;&#49828;&#47484; &#50504;&#51221;&#51201;&#51004;&#47196; &#50868;&#50689;&#54616;&#45716; &#44163;&#51060; &#47785;&#54'&#51076;&#45768;&#45796;.</p>
+        <p>&#45800;&#49692;&#55176; &#46020;&#44396;&#47484; &#49324;&#50857;&#54616;&#45716; &#44163;&#51012; &#45118;&#50612;, <strong>&#50773; &#51060; &#49444;&#44228;&#47484; &#49440;&#53469;&#54664;&#45716;&#51648;</strong>&#47484; &#49444;&#47749;&#54624; &#49688; &#51080;&#45716; &#50183;&#45768;&#45768;&#50612;&#44032; &#46104;&#44256;&#51088; &#54633;&#45768;&#45796;.</p>
+      </div>
+      <div>
+        <div class="about-card">
+          <h4>// education &amp; experience</h4>
+          <ul>
+            <li>&#52397;&#45380;&#52712;&#50629;&#49324;&#44288;&#54617;&#44368; &#53364;&#46972;&#50864;&#46300; &#45936;&#51060;&#53552; &#50183;&#45768;&#45768;&#50612; &#44284;&#51221; (2025.12 ~ 2026.04)</li>
+            <li>&#51204; &#51649;&#51109; &#54924;&#44228; &#45813;&#45813; &#8594; &#51064;&#54532;&#46972; &#50183;&#45768;&#45768;&#50612; &#51204;&#51649;</li>
+            <li>B2G &#54616;&#51060;&#48652;&#47532;&#46300; DR &#51064;&#54532;&#46972; &#54300; &#54532;&#47196;&#51204;&#53944; (5&#51452;)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<section id="skills">
+  <div class="container">
+    <p class="section-label">// skills</p>
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>On-Premises</h4>
+        <div class="skill-tags">
+          <span class="tag accent">VMware</span><span class="tag">RHEL</span><span class="tag">Ubuntu</span><span class="tag">HAProxy</span><span class="tag">Keepalived</span><span class="tag">NFS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Cloud &mdash; AWS</h4>
+        <div class="skill-tags">
+          <span class="tag accent">EKS</span><span class="tag accent">VPC</span><span class="tag">EC2</span><span class="tag">RDS</span><span class="tag">Route53</span><span class="tag">CloudFront</span><span class="tag">ALB</span><span class="tag">WAF</span><span class="tag">DMS</span><span class="tag">ECR</span><span class="tag">S3</span><span class="tag">IAM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>IaC &amp; Automation</h4>
+        <div class="skill-tags">
+          <span class="tag accent">Terraform</span><span class="tag accent">Ansible</span><span class="tag">Bash</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Container &amp; Orchestration</h4>
+        <div class="skill-tags">
+          <span class="tag accent2">Kubernetes</span><span class="tag accent2">Docker</span><span class="tag">Harbor</span><span class="tag">Helm</span><span class="tag">Karpenter</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>GitOps &amp; CI/CD</h4>
+        <div class="skill-tags">
+          <span class="tag">ArgoCD</span><span class="tag">GitHub Actions</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Monitoring</h4>
+        <div class="skill-tags">
+          <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Loki</span><span class="tag">Promtail</span><span class="tag">Node Exporter</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Database</h4>
+        <div class="skill-tags">
+          <span class="tag">PostgreSQL 14</span><span class="tag">Streaming Replication</span><span class="tag">WAL Archive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="container">
+    <p class="section-label">// certifications</p>
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon">&#127894;</div>
+        <div class="cert-info">
+          <h4>RHCSA</h4>
+          <p>Red Hat Certified System Administrator</p>
+          <p>Red Hat Enterprise Linux &#49884;&#49828;&#53596; &#44288;&#47532; &#48143; &#50868;&#50689;</p>
+          <span class="cert-badge">Red Hat</span>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#127760;</div>
+        <div class="cert-info">
+          <h4>&#45348;&#53944;&#50892;&#53356;&#44288;&#47532;&#49324; 2&#44553;</h4>
+          <p>&#54620;&#44397;&#51221;&#48372;&#53685;&#49888;&#51088;&#44201;&#54ùc;&#54924; (ICQA)</p>
+          <p>&#45348;&#53944;&#50892;&#53356; &#44396;&#49457; &middot; &#44288;&#47532; &middot; &#50868;&#50689;</p>
+          <span class="cert-badge">ICQA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <p class="section-label">// projects</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <div class="project-tags">
+            <span class="tag accent">Featured</span>
+            <span class="tag">Team Project (4&#51064;)</span>
+            <span class="tag">5&#51452;</span>
+          </div>
+          <h3 class="project-title">B2G Hybrid Cloud DR Infrastructure</h3>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/lifecheatyou/sessac-hybrid-cloud" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <p class="project-desc">
+        &#44397;&#49464;&#52397; &#54253;&#53469;&#49828;&#47484; &#47784;&#49324;&#54620; B2G &#49436;&#48708;&#49828;&#47484; &#45내&#49345;&#51004;&#47196;, &#50728;&#54532;&#47112;&#48―&#48―&#49828;(&#46020;&#44396;) &#8596; AWS &#49436;&#50872; &#44036; &#54616;&#51060;&#48652;&#47532;&#46300; DR &#51064;&#54532;&#46972;&#47484; &#49444;&#44228;&#183;&#44396;&#52628;&#54620; &#54300; &#54532;&#47196;&#51204;&#53944;.
+        &#51204; &#51649;&#51109;&#50640;&#49436; &#50672;&#47568;&#51221;&#49328; &#47560;&#44048;&#51068;&#50640; &#54253;&#53469;&#49828; &#51109;&#50528;&#47484; &#51649;&#51217; &#44221;&#54험&#54620; &#44163;&#51060; &#52048;&#48156;&#51216;&#51060; &#46112;&#45796;&#45796;.
+      </p>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val">5m 30s</div>
+          <div class="metric-label">RTO &#49892;&#52769;<br/>(&#47785;&#53945; 10&#48516;)</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">&#8776; 0s</div>
+          <div class="metric-label">RPO<br/>(WAL &#46041;&#44592;&#48373;&#51228;)</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">10&#45824;</div>
+          <div class="metric-label">EC2 &#45432;&#46300;<br/>&#50756;&#51204; &#51088;&#46041; &#48176;&#54252;</div>
+        </div>
+      </div>
+      <div class="project-roles">
+        <h5>// &#45813;&#45813; &#50669;&#54624; (&#9733;)</h5>
+        <ul>
+          <li>&#50728;&#54532;&#47112;&#48―&#48―&#49828; &#51064;&#54532;&#46972; &#49444;&#44228; &#8212; 6&#44228;&#52216; &#45348;&#53944;&#50892;&#53356; &#48516;&#47532;, Terraform EC2 10&#45824; &#54532;&#47196;&#48708;&#51200;&#45768;&#45768;, Security Group &#52572;&#49548;&#44428;&#54620;</li>
+          <li>&#45348;&#53944;&#50892;&#53356; &#49444;&#44228; &#8212; VPC CIDR &#49444;&#44228;, &#49436;&#48652;&#45367; &#44228;&#52216; &#48516;&#47532;, VPC Peering, Route Table &#51312;&#44148;&#48512; &#44201;&#47532;</li>
+          <li>AWS &#53364;&#46972;&#50864;&#46300; &#51064;&#54532;&#46972; &#8212; EKS, RDS, DMS, CloudFront, WAF, Route53 Terraform &#47784;&#46388; &#44396;&#49457;</li>
+          <li>DR &#49884;&#45208;&#47532;&#50724; &#49444;&#44228;&#183;&#44160;&#51613; &#8212; Failover/Failback &#51088;&#46041;&#54868;, RTO/RPO &#52769;&#51221;, S1 Burst &#49892;&#52769; (&#51204;&#54™ 5&#48516; 30&#52488;)</li>
+        </ul>
+      </div>
+      <div style="margin-top:1.5rem">
+        <div class="skill-tags">
+          <span class="tag accent">Terraform</span><span class="tag">Ansible</span><span class="tag accent2">Kubernetes</span>
+          <span class="tag">AWS EKS</span><span class="tag">RDS</span><span class="tag">Route53</span>
+          <span class="tag">CloudFront</span><span class="tag">DMS</span><span class="tag">HAProxy</span>
+          <span class="tag">PostgreSQL</span><span class="tag">Harbor</span><span class="tag">ArgoCD</span>
+          <span class="tag">Prometheus</span><span class="tag">Grafana</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <p class="section-label">// contact</p>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-inner">
+      <p>
+        &#53364;&#46972;&#50864;&#46300; &#51064;&#54532;&#46972; &#54252;&#51648;&#49496;&#51012; &#51201;&#44··&#51201;&#51004;&#47196; &#52286;&#44256; &#51080;&#49845;&#45768;&#45796;.<br />
+        &#52278;&#50857; &#47928;&#51032; &#46608;&#45716; &#54ùc;&#50633; &#51228;&#50504;&#51008; &#50616;&#51228;&#46çr;&#51648; &#54628;&#50689;&#54633;&#45768;&#45796;.
+      </p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:sungjaehan076@gmail.com">&#9993; sungjaehan076@gmail.com</a>
+        <a class="btn btn-outline" href="https://github.com/lifecheatyou" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Sung-Jae Han &middot; Built with HTML/CSS &middot; Hosted on GitHub Pages</p>
+</footer>
+
 </body>
-
 </html>
