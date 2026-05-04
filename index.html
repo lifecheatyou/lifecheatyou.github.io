@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sung-Jae Han | Cloud Infrastructure Engineer</title>
-  <meta name="description" content="Cloud & Infrastructure Engineer portfolio of Sung-Jae Han" />
+  <title>한승재 | Cloud Infrastructure Engineer</title>
+  <meta name="description" content="Cloud &amp; Infrastructure Engineer portfolio of Sung-Jae Han" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
@@ -20,7 +20,6 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
       background: rgba(13,17,23,.85); backdrop-filter: blur(12px);
@@ -32,13 +31,11 @@
     .nav-links a { color: var(--muted); font-size: .9rem; transition: color .2s; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
 
-    /* LAYOUT */
     section { padding: 6rem 0; }
     .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
     .section-label { font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
     .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
 
-    /* HERO */
     #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 60px; }
     .hero-greeting { font-family: 'JetBrains Mono',monospace; color: var(--accent); font-size: 1rem; margin-bottom: 1.5rem; }
     .hero-name { font-size: clamp(2.5rem,6vw,4rem); font-weight: 700; line-height: 1.15; margin-bottom: .5rem; }
@@ -52,7 +49,6 @@
     .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
-    /* TERMINAL */
     .terminal { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; font-family: 'JetBrains Mono',monospace; font-size: .85rem; margin-top: 3rem; max-width: 560px; }
     .terminal-bar { display: flex; gap: .5rem; margin-bottom: 1rem; }
     .dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -62,7 +58,6 @@
     .t-cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); animation: blink 1s step-end infinite; vertical-align: text-bottom; margin-left: 2px; }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* ABOUT */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
     .about-text p { color: var(--muted); margin-bottom: 1rem; }
     .about-text p strong { color: var(--text); }
@@ -73,7 +68,6 @@
     .about-card li:last-child { border-bottom: none; }
     .about-card li::before { content: "\25B9"; color: var(--accent2); flex-shrink: 0; }
 
-    /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 1.5rem; }
     .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
     .skill-group h4 { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); font-family: 'JetBrains Mono',monospace; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
@@ -82,7 +76,6 @@
     .tag.accent  { border-color: var(--accent);  color: var(--accent); }
     .tag.accent2 { border-color: var(--accent2); color: var(--accent2); }
 
-    /* CERT */
     .cert-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 1.5rem; }
     .cert-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: border-color .2s; }
     .cert-card:hover { border-color: var(--accent); }
@@ -91,7 +84,6 @@
     .cert-info p  { font-size: .85rem; color: var(--muted); }
     .cert-badge { display: inline-block; margin-top: .5rem; font-size: .7rem; font-family: 'JetBrains Mono',monospace; color: var(--accent2); background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.3); padding: .15rem .5rem; border-radius: 4px; }
 
-    /* PROJECTS */
     .project-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; transition: border-color .2s, transform .2s; }
     .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
@@ -110,7 +102,6 @@
     .project-roles li { color: var(--muted); font-size: .9rem; padding: .2rem 0; display: flex; align-items: flex-start; gap: .6rem; }
     .project-roles li::before { content: "\25B9"; color: var(--accent); flex-shrink: 0; margin-top: .25rem; }
 
-    /* CONTACT */
     .contact-inner { text-align: center; max-width: 540px; margin: 0 auto; }
     .contact-inner p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
     .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
@@ -139,17 +130,17 @@
 <section id="hero">
   <div class="container">
     <p class="hero-greeting">$ whoami</p>
-    <h1 class="hero-name">&#54620;&#49849;&#51116;</h1>
+    <h1 class="hero-name">한승재</h1>
     <p class="hero-name-en">Sung-Jae Han</p>
     <p class="hero-role">Cloud &amp; Infrastructure Engineer</p>
     <p class="hero-desc">
-      &#50728;&#54532;&#47112;&#48―&#48―&#49828;&#48―&#53804; AWS &#47213;&#54°&#47532;&#51204;&#44619;&#44620;&#51648;, &#51064;&#54532;&#46972; &#51204; &#44228;&#52216;&#51012; &#51649;&#51217; &#49444;&#44228;&#54616;&#44256; &#44396;&#52628;&#54633;&#45768;&#45796;.<br />
-      Terraform &middot; Ansible &middot; Kubernetes&#47196; &#51116;&#54788; &#44032;&#45733;&#54620; &#51064;&#54532;&#46972;&#47484; &#47564;&#46069;&#45768;&#45796;.
+      온프레미스부터 AWS 멀티리전까지, 인프라 전 계층을 직접 설계하고 구축합니다.<br />
+      Terraform &middot; Ansible &middot; Kubernetes로 재현 가능한 인프라를 만듭니다.
     </p>
     <div class="hero-btns">
-      <a class="btn btn-primary" href="#projects">&#54532;&#47196;&#51204;&#53944; &#48372;&#44592;</a>
+      <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
       <a class="btn btn-outline" href="https://github.com/lifecheatyou" target="_blank">GitHub</a>
-      <a class="btn btn-outline" href="#contact">&#50672;&#46973;&#54616;&#44592;</a>
+      <a class="btn btn-outline" href="#contact">연락하기</a>
     </div>
     <div class="terminal">
       <div class="terminal-bar">
@@ -174,17 +165,17 @@
     <h2 class="section-title">About Me</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>&#51204; &#51649;&#51109;&#50640;&#49436; <strong>&#54924;&#44228; &#45813;&#45813;&#51088;</strong>&#47196; &#51068;&#54616;&#46358; &#51473;, &#50672;&#47568;&#51221;&#49328; &#47560;&#44048;&#51068;&#50640; &#54253;&#53469;&#49828; &#49436;&#48708;&#49828;&#44032; &#49688; &#49884;&#44036; &#51109;&#50528;&#47484; &#44192;&#45716; &#49345;&#54889;&#51012; &#51649;&#51217; &#44221;&#54èa;&#54831;&#49845;&#45768;&#45796;. &#49436;&#48260;&#44032; &#��&#48373;&#46104;&#44592;&#47564;&#51012; &#44592;&#45796;&#47532;&#45716; &#44536; &#47924;&#47141;&#54632;&#51060; &#53364;&#46972;&#50864;&#46300; &#51064;&#54532;&#46972; &#44277;&#48512;&#47484; &#49884;&#51089;&#54620; &#44228;&#44592;&#44032; &#46112;&#45796;.&#50500;.</p>
-        <p>&#54788;&#51116;&#45716; <strong>&#50728;&#54532;&#47112;&#48―&#48―&#49828; &#8596; AWS &#54616;&#51060;&#48652;&#47532;&#46300; &#51064;&#54532;&#46972;</strong> &#49444;&#44228;&#50752; &#44396;&#52628;&#50640; &#51665;&#51473;&#54616;&#44256; &#51080;&#49845;&#45768;&#45796;. Terraform&#51004;&#47196; &#51064;&#54532;&#46972;&#47484; &#53076;&#46300;&#47196; &#44288;&#47532;&#54616;&#44256;, Kubernetes &#50948;&#50640;&#49436; &#49436;&#48708;&#49828;&#47484; &#50504;&#51221;&#51201;&#51004;&#47196; &#50868;&#50689;&#54616;&#45716; &#44163;&#51060; &#47785;&#54'&#51076;&#45768;&#45796;.</p>
-        <p>&#45800;&#49692;&#55176; &#46020;&#44396;&#47484; &#49324;&#50857;&#54616;&#45716; &#44163;&#51012; &#45118;&#50612;, <strong>&#50773; &#51060; &#49444;&#44228;&#47484; &#49440;&#53469;&#54664;&#45716;&#51648;</strong>&#47484; &#49444;&#47749;&#54624; &#49688; &#51080;&#45716; &#50183;&#45768;&#45768;&#50612;&#44032; &#46104;&#44256;&#51088; &#54633;&#45768;&#45796;.</p>
+        <p>전 직장에서 <strong>회계 담당자</strong>로 일하던 중, 연말정산 마감일에 홈택스 서비스가 수 시간 장애를 겪는 상황을 직접 경험했습니다. 서버가 복구되기만을 기다리는 그 무력함이 클라우드 인프라 공부를 시작한 계기가 됐습니다.</p>
+        <p>현재는 <strong>온프레미스 &harr; AWS 하이브리드 인프라</strong> 설계와 구축에 집중하고 있습니다. Terraform으로 인프라를 코드로 관리하고, Kubernetes 위에서 서비스를 안정적으로 운영하는 것이 목표입니다.</p>
+        <p>단순히 도구를 사용하는 것을 넘어, <strong>왜 이 설계를 선택했는지</strong>를 설명할 수 있는 엔지니어가 되고자 합니다.</p>
       </div>
       <div>
         <div class="about-card">
           <h4>// education &amp; experience</h4>
           <ul>
-            <li>&#52397;&#45380;&#52712;&#50629;&#49324;&#44288;&#54617;&#44368; &#53364;&#46972;&#50864;&#46300; &#45936;&#51060;&#53552; &#50183;&#45768;&#45768;&#50612; &#44284;&#51221; (2025.12 ~ 2026.04)</li>
-            <li>&#51204; &#51649;&#51109; &#54924;&#44228; &#45813;&#45813; &#8594; &#51064;&#54532;&#46972; &#50183;&#45768;&#45768;&#50612; &#51204;&#51649;</li>
-            <li>B2G &#54616;&#51060;&#48652;&#47532;&#46300; DR &#51064;&#54532;&#46972; &#54300; &#54532;&#47196;&#51204;&#53944; (5&#51452;)</li>
+            <li>새싹 클라우드 데이터 엔지니어 과정 (2025.12 ~ 2026.04)</li>
+            <li>전 직장 회계 담당 &rarr; 인프라 엔지니어 전직</li>
+            <li>B2G 하이브리드 DR 인프라 팀 프로젝트 (5주)</li>
           </ul>
         </div>
       </div>
@@ -253,16 +244,16 @@
         <div class="cert-info">
           <h4>RHCSA</h4>
           <p>Red Hat Certified System Administrator</p>
-          <p>Red Hat Enterprise Linux &#49884;&#49828;&#53596; &#44288;&#47532; &#48143; &#50868;&#50689;</p>
+          <p>Red Hat Enterprise Linux 시스템 관리 및 운영</p>
           <span class="cert-badge">Red Hat</span>
         </div>
       </div>
       <div class="cert-card">
         <div class="cert-icon">&#127760;</div>
         <div class="cert-info">
-          <h4>&#45348;&#53944;&#50892;&#53356;&#44288;&#47532;&#49324; 2&#44553;</h4>
-          <p>&#54620;&#44397;&#51221;&#48372;&#53685;&#49888;&#51088;&#44201;&#54ùc;&#54924; (ICQA)</p>
-          <p>&#45348;&#53944;&#50892;&#53356; &#44396;&#49457; &middot; &#44288;&#47532; &middot; &#50868;&#50689;</p>
+          <h4>네트워크관리사 2급</h4>
+          <p>한국정보통신자격협회 (ICQA)</p>
+          <p>네트워크 구성 &middot; 관리 &middot; 운영</p>
           <span class="cert-badge">ICQA</span>
         </div>
       </div>
@@ -279,8 +270,8 @@
         <div>
           <div class="project-tags">
             <span class="tag accent">Featured</span>
-            <span class="tag">Team Project (4&#51064;)</span>
-            <span class="tag">5&#51452;</span>
+            <span class="tag">팀 프로젝트 (4인)</span>
+            <span class="tag">5주</span>
           </div>
           <h3 class="project-title">B2G Hybrid Cloud DR Infrastructure</h3>
         </div>
@@ -292,30 +283,30 @@
         </div>
       </div>
       <p class="project-desc">
-        &#44397;&#49464;&#52397; &#54253;&#53469;&#49828;&#47484; &#47784;&#49324;&#54620; B2G &#49436;&#48708;&#49828;&#47484; &#45내&#49345;&#51004;&#47196;, &#50728;&#54532;&#47112;&#48―&#48―&#49828;(&#46020;&#44396;) &#8596; AWS &#49436;&#50872; &#44036; &#54616;&#51060;&#48652;&#47532;&#46300; DR &#51064;&#54532;&#46972;&#47484; &#49444;&#44228;&#183;&#44396;&#52628;&#54620; &#54300; &#54532;&#47196;&#51204;&#53944;.
-        &#51204; &#51649;&#51109;&#50640;&#49436; &#50672;&#47568;&#51221;&#49328; &#47560;&#44048;&#51068;&#50640; &#54253;&#53469;&#49828; &#51109;&#50528;&#47484; &#51649;&#51217; &#44221;&#54험&#54620; &#44163;&#51060; &#52048;&#48156;&#51216;&#51060; &#46112;&#45796;&#45796;.
+        국세청 홈택스를 모사한 B2G 서비스를 대상으로, 온프레미스(도쿄) &harr; AWS 서울 간 하이브리드 DR 인프라를 설계·구축한 팀 프로젝트.
+        전 직장에서 연말정산 마감일에 홈택스 장애를 직접 경험한 것이 출발점이 됐습니다.
       </p>
       <div class="project-metrics">
         <div class="metric">
           <div class="metric-val">5m 30s</div>
-          <div class="metric-label">RTO &#49892;&#52769;<br/>(&#47785;&#53945; 10&#48516;)</div>
+          <div class="metric-label">RTO 실측<br/>(목표 10분)</div>
         </div>
         <div class="metric">
-          <div class="metric-val">&#8776; 0s</div>
-          <div class="metric-label">RPO<br/>(WAL &#46041;&#44592;&#48373;&#51228;)</div>
+          <div class="metric-val">&asymp; 0s</div>
+          <div class="metric-label">RPO<br/>(WAL 동기복제)</div>
         </div>
         <div class="metric">
-          <div class="metric-val">10&#45824;</div>
-          <div class="metric-label">EC2 &#45432;&#46300;<br/>&#50756;&#51204; &#51088;&#46041; &#48176;&#54252;</div>
+          <div class="metric-val">10대</div>
+          <div class="metric-label">EC2 노드<br/>완전 자동 배포</div>
         </div>
       </div>
       <div class="project-roles">
-        <h5>// &#45813;&#45813; &#50669;&#54624; (&#9733;)</h5>
+        <h5>// 담당 역할 (&#9733;)</h5>
         <ul>
-          <li>&#50728;&#54532;&#47112;&#48―&#48―&#49828; &#51064;&#54532;&#46972; &#49444;&#44228; &#8212; 6&#44228;&#52216; &#45348;&#53944;&#50892;&#53356; &#48516;&#47532;, Terraform EC2 10&#45824; &#54532;&#47196;&#48708;&#51200;&#45768;&#45768;, Security Group &#52572;&#49548;&#44428;&#54620;</li>
-          <li>&#45348;&#53944;&#50892;&#53356; &#49444;&#44228; &#8212; VPC CIDR &#49444;&#44228;, &#49436;&#48652;&#45367; &#44228;&#52216; &#48516;&#47532;, VPC Peering, Route Table &#51312;&#44148;&#48512; &#44201;&#47532;</li>
-          <li>AWS &#53364;&#46972;&#50864;&#46300; &#51064;&#54532;&#46972; &#8212; EKS, RDS, DMS, CloudFront, WAF, Route53 Terraform &#47784;&#46388; &#44396;&#49457;</li>
-          <li>DR &#49884;&#45208;&#47532;&#50724; &#49444;&#44228;&#183;&#44160;&#51613; &#8212; Failover/Failback &#51088;&#46041;&#54868;, RTO/RPO &#52769;&#51221;, S1 Burst &#49892;&#52769; (&#51204;&#54™ 5&#48516; 30&#52488;)</li>
+          <li>온프레미스 인프라 설계 &mdash; 6계층 네트워크 분리, Terraform EC2 10대 프로비저닝, Security Group 최소권한</li>
+          <li>네트워크 설계 &mdash; VPC CIDR 설계, 서브넷 계층 분리, VPC Peering, Route Table 구성부터 관리</li>
+          <li>AWS 클라우드 인프라 &mdash; EKS, RDS, DMS, CloudFront, WAF, Route53 Terraform 모듈 구성</li>
+          <li>DR 시나리오 설계·검증 &mdash; Failover/Failback 자동화, RTO/RPO 측정, S1 Burst 실측 (전체 5분 30초)</li>
         </ul>
       </div>
       <div style="margin-top:1.5rem">
@@ -337,8 +328,8 @@
     <h2 class="section-title">Contact</h2>
     <div class="contact-inner">
       <p>
-        &#53364;&#46972;&#50864;&#46300; &#51064;&#54532;&#46972; &#54252;&#51648;&#49496;&#51012; &#51201;&#44··&#51201;&#51004;&#47196; &#52286;&#44256; &#51080;&#49845;&#45768;&#45796;.<br />
-        &#52278;&#50857; &#47928;&#51032; &#46608;&#45716; &#54ùc;&#50633; &#51228;&#50504;&#51008; &#50616;&#51228;&#46çr;&#51648; &#54628;&#50689;&#54633;&#45768;&#45796;.
+        클라우드 인프라 포지션을 적극적으로 찾고 있습니다.<br />
+        채용 문의 또는 협업 제안은 언제든지 환영합니다.
       </p>
       <div class="contact-links">
         <a class="btn btn-primary" href="mailto:sungjaehan076@gmail.com">&#9993; sungjaehan076@gmail.com</a>
