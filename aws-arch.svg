@@ -1,31 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" style="font-family:'JetBrains Mono',monospace;display:block">
   <defs>
     <marker id="b" markerWidth="8" markerHeight="7" refX="7" refY="3.5" orient="auto">
-      <polygon points="0 0,8 3.5,0 7" fill="#8b949e"/>
+      <polygon points="0 0,8 3.5,0 7" fill="#a1a1aa"/>
     </marker>
   </defs>
-  <rect width="700" height="320" rx="10" fill="#161b22"/>
+  <rect width="700" height="320" rx="10" fill="#18181b"/>
 
   <!-- Public Subnets zone -->
   <rect x="16" y="8" width="668" height="120" rx="6" fill="rgba(56,189,248,0.04)" stroke="rgba(56,189,248,0.2)" stroke-width="1" stroke-dasharray="6,3"/>
   <text x="26" y="20" fill="rgba(56,189,248,0.55)" font-size="8.5">Public Subnets A / B</text>
 
   <!-- Internet -->
-  <rect x="275" y="16" width="150" height="36" rx="6" fill="#21262d" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="350" y="30" fill="#38bdf8" font-size="9" text-anchor="middle">INTERNET</text>
+  <rect x="275" y="16" width="150" height="36" rx="6" fill="#27272a" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="350" y="30" fill="#fb7185" font-size="9" text-anchor="middle">INTERNET</text>
   <text x="350" y="44" fill="#e6edf3" font-size="10.5" text-anchor="middle">Internet Gateway</text>
 
   <!-- Bastion -->
-  <rect x="556" y="16" width="120" height="36" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
-  <text x="616" y="30" fill="#8b949e" font-size="9" text-anchor="middle">BASTION</text>
+  <rect x="556" y="16" width="120" height="36" rx="6" fill="#27272a" stroke="#3f3f46" stroke-width="1.5"/>
+  <text x="616" y="30" fill="#a1a1aa" font-size="9" text-anchor="middle">BASTION</text>
   <text x="616" y="44" fill="#e6edf3" font-size="10.5" text-anchor="middle">Public-A (EC2)</text>
 
   <!-- Internet→ALB -->
-  <line x1="350" y1="52" x2="350" y2="84" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+  <line x1="350" y1="52" x2="350" y2="84" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#b)"/>
 
   <!-- ALB -->
-  <rect x="160" y="84" width="380" height="36" rx="6" fill="#21262d" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="350" y="99" fill="#38bdf8" font-size="9" text-anchor="middle">LOAD BALANCER</text>
+  <rect x="160" y="84" width="380" height="36" rx="6" fill="#27272a" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="350" y="99" fill="#fb7185" font-size="9" text-anchor="middle">LOAD BALANCER</text>
   <text x="350" y="113" fill="#e6edf3" font-size="10.5" text-anchor="middle">ALB — Public Subnet A / B</text>
 
   <!-- Private App zone -->
@@ -33,37 +33,37 @@
   <text x="26" y="148" fill="rgba(52,211,153,0.55)" font-size="8.5">Private App Subnets A / B</text>
 
   <!-- ALB→WEB1 -->
-  <line x1="238" y1="120" x2="157" y2="152" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+  <line x1="238" y1="120" x2="157" y2="152" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#b)"/>
   <!-- ALB→WEB2 -->
-  <line x1="462" y1="120" x2="545" y2="152" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+  <line x1="462" y1="120" x2="545" y2="152" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#b)"/>
 
   <!-- WEB1 -->
-  <rect x="55" y="152" width="200" height="36" rx="6" fill="#21262d" stroke="#34d399" stroke-width="1.5"/>
-  <text x="155" y="167" fill="#34d399" font-size="9" text-anchor="middle">WEB 1 — App-a</text>
+  <rect x="55" y="152" width="200" height="36" rx="6" fill="#27272a" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="155" y="167" fill="#fbbf24" font-size="9" text-anchor="middle">WEB 1 — App-a</text>
   <text x="155" y="181" fill="#e6edf3" font-size="10.5" text-anchor="middle">Nginx + WordPress</text>
 
   <!-- WEB2 -->
-  <rect x="447" y="152" width="200" height="36" rx="6" fill="#21262d" stroke="#34d399" stroke-width="1.5"/>
-  <text x="547" y="167" fill="#34d399" font-size="9" text-anchor="middle">WEB 2 — App-b</text>
+  <rect x="447" y="152" width="200" height="36" rx="6" fill="#27272a" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="547" y="167" fill="#fbbf24" font-size="9" text-anchor="middle">WEB 2 — App-b</text>
   <text x="547" y="181" fill="#e6edf3" font-size="10.5" text-anchor="middle">Nginx + WordPress</text>
 
   <!-- Bastion SSH dashed -->
-  <line x1="616" y1="52" x2="616" y2="148" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="616" y1="148" x2="648" y2="148" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#b)"/>
-  <text x="625" y="143" fill="#8b949e" font-size="8">SSH</text>
+  <line x1="616" y1="52" x2="616" y2="148" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="616" y1="148" x2="648" y2="148" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#b)"/>
+  <text x="625" y="143" fill="#a1a1aa" font-size="8">SSH</text>
 
   <!-- Private DB zone -->
   <rect x="16" y="218" width="668" height="88" rx="6" fill="rgba(139,148,158,0.05)" stroke="rgba(139,148,158,0.2)" stroke-width="1" stroke-dasharray="6,3"/>
   <text x="26" y="230" fill="rgba(139,148,158,0.55)" font-size="8.5">Private DB Subnets A / B</text>
 
   <!-- WEB1→DB -->
-  <line x1="155" y1="188" x2="293" y2="252" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+  <line x1="155" y1="188" x2="293" y2="252" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#b)"/>
   <!-- WEB2→DB -->
-  <line x1="547" y1="188" x2="409" y2="252" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+  <line x1="547" y1="188" x2="409" y2="252" stroke="#a1a1aa" stroke-width="1.5" marker-end="url(#b)"/>
 
   <!-- DB (EC2 MySQL) -->
-  <rect x="210" y="246" width="280" height="48" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
-  <text x="350" y="263" fill="#8b949e" font-size="9" text-anchor="middle">DATABASE — DB Subnet-a</text>
+  <rect x="210" y="246" width="280" height="48" rx="6" fill="#27272a" stroke="#3f3f46" stroke-width="1.5"/>
+  <text x="350" y="263" fill="#a1a1aa" font-size="9" text-anchor="middle">DATABASE — DB Subnet-a</text>
   <text x="350" y="280" fill="#e6edf3" font-size="11" text-anchor="middle" font-weight="600">EC2 MySQL</text>
-  <text x="350" y="294" fill="#8b949e" font-size="8.5" text-anchor="middle">(10.0.4.x / EC2 직접 설치)</text>
+  <text x="350" y="294" fill="#a1a1aa" font-size="8.5" text-anchor="middle">(10.0.4.x / EC2 직접 설치)</text>
 </svg>
