@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 305" style="font-family:'JetBrains Mono',monospace;display:block">
+  <defs>
+    <marker id="b" markerWidth="8" markerHeight="7" refX="7" refY="3.5" orient="auto">
+      <polygon points="0 0,8 3.5,0 7" fill="#8b949e"/>
+    </marker>
+  </defs>
+  <rect width="700" height="305" rx="10" fill="#161b22"/>
+
+  <!-- Public Subnets zone -->
+  <rect x="16" y="8" width="668" height="120" rx="6" fill="rgba(56,189,248,0.04)" stroke="rgba(56,189,248,0.2)" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="26" y="20" fill="rgba(56,189,248,0.55)" font-size="8.5">Public Subnets</text>
+
+  <!-- Internet -->
+  <rect x="275" y="16" width="150" height="36" rx="6" fill="#21262d" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="350" y="30" fill="#38bdf8" font-size="9" text-anchor="middle">INTERNET</text>
+  <text x="350" y="44" fill="#e6edf3" font-size="10.5" text-anchor="middle">Internet Gateway</text>
+
+  <!-- Bastion -->
+  <rect x="556" y="16" width="120" height="36" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
+  <text x="616" y="30" fill="#8b949e" font-size="9" text-anchor="middle">BASTION</text>
+  <text x="616" y="44" fill="#e6edf3" font-size="10.5" text-anchor="middle">Public-B</text>
+
+  <!-- Internet→ALB -->
+  <line x1="350" y1="52" x2="350" y2="84" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- ALB -->
+  <rect x="160" y="84" width="380" height="36" rx="6" fill="#21262d" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="350" y="99" fill="#38bdf8" font-size="9" text-anchor="middle">LOAD BALANCER</text>
+  <text x="350" y="113" fill="#e6edf3" font-size="10.5" text-anchor="middle">ALB — Public Subnet A / C</text>
+
+  <!-- Private App zone -->
+  <rect x="16" y="136" width="668" height="62" rx="6" fill="rgba(52,211,153,0.04)" stroke="rgba(52,211,153,0.2)" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="26" y="148" fill="rgba(52,211,153,0.55)" font-size="8.5">Private App Subnets</text>
+
+  <!-- ALB→WEB1 -->
+  <line x1="238" y1="120" x2="160" y2="152" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+  <!-- ALB→WEB2 -->
+  <line x1="462" y1="120" x2="542" y2="152" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- WEB1 -->
+  <rect x="60" y="152" width="195" height="36" rx="6" fill="#21262d" stroke="#34d399" stroke-width="1.5"/>
+  <text x="157" y="167" fill="#34d399" font-size="9" text-anchor="middle">WEB 1</text>
+  <text x="157" y="181" fill="#e6edf3" font-size="10.5" text-anchor="middle">WordPress — App-a</text>
+
+  <!-- WEB2 -->
+  <rect x="445" y="152" width="195" height="36" rx="6" fill="#21262d" stroke="#34d399" stroke-width="1.5"/>
+  <text x="542" y="167" fill="#34d399" font-size="9" text-anchor="middle">WEB 2</text>
+  <text x="542" y="181" fill="#e6edf3" font-size="10.5" text-anchor="middle">WordPress — App-c</text>
+
+  <!-- Bastion SSH dashed -->
+  <line x1="616" y1="52" x2="616" y2="148" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="616" y1="148" x2="656" y2="148" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#b)"/>
+  <text x="626" y="143" fill="#8b949e" font-size="8">SSH</text>
+
+  <!-- Private DB zone -->
+  <rect x="16" y="218" width="668" height="74" rx="6" fill="rgba(139,148,158,0.05)" stroke="rgba(139,148,158,0.2)" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="26" y="230" fill="rgba(139,148,158,0.55)" font-size="8.5">Private DB Subnet</text>
+
+  <!-- WEB1→RDS -->
+  <line x1="157" y1="188" x2="293" y2="244" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+  <!-- WEB2→RDS -->
+  <line x1="542" y1="188" x2="409" y2="244" stroke="#8b949e" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- RDS -->
+  <rect x="215" y="238" width="270" height="42" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
+  <text x="350" y="255" fill="#8b949e" font-size="9" text-anchor="middle">DATABASE</text>
+  <text x="350" y="272" fill="#e6edf3" font-size="10.5" text-anchor="middle">RDS MySQL — DB Subnet-a</text>
+</svg>
