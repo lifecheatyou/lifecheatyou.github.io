@@ -420,28 +420,28 @@
         </div>
       </div>
       <p class="project-desc">
-        Terraform으로 AWS VPC·ALB·EC2·RDS 전체를 IaC로 프로비저닝하고, Ansible로 WordPress 서버 구성을 자동화한 실습 프로젝트.
+        Terraform으로 AWS VPC·ALB·EC2(Web×2·DB·Bastion) 전체를 IaC로 프로비저닝하고, Ansible Role 구조로 Nginx·WordPress·MySQL 서버 구성을 자동화한 실습 프로젝트.
       </p>
       <img src="aws-arch.svg" alt="AWS WordPress Infrastructure Architecture" style="width:100%;border-radius:8px;margin-bottom:1.5rem">
       <div class="project-metrics">
         <div class="metric">
-          <div class="metric-val">5개</div>
+          <div class="metric-val">6개</div>
           <div class="metric-label">서브넷<br/>(Multi-AZ)</div>
         </div>
         <div class="metric">
-          <div class="metric-val">EC2 3대</div>
-          <div class="metric-label">Web×2 + Bastion</div>
+          <div class="metric-val">EC2 4대</div>
+          <div class="metric-label">Web×2 + DB + Bastion</div>
         </div>
         <div class="metric">
-          <div class="metric-val">6개</div>
-          <div class="metric-label">Terraform 모듈<br/>전체 IaC</div>
+          <div class="metric-val">6파일</div>
+          <div class="metric-label">Terraform<br/>전체 IaC</div>
         </div>
       </div>
       <div style="margin-top:1.5rem">
         <div class="skill-tags">
           <span class="tag accent">Terraform</span><span class="tag">Ansible</span><span class="tag accent2">AWS</span>
           <span class="tag">VPC</span><span class="tag">ALB</span><span class="tag">EC2</span>
-          <span class="tag">RDS</span><span class="tag">Bastion</span><span class="tag">WordPress</span>
+          <span class="tag">Nginx</span><span class="tag">MySQL</span><span class="tag">Bastion</span><span class="tag">WordPress</span>
         </div>
       </div>
     </div>
