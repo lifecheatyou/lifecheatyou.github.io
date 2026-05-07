@@ -124,6 +124,12 @@
     .project-roles ul { list-style: none; }
     .project-roles li { color: var(--muted); font-size: .9rem; padding: .2rem 0; display: flex; align-items: flex-start; gap: .6rem; }
     .project-roles li::before { content: "\25B9"; color: var(--accent); flex-shrink: 0; margin-top: .25rem; }
+    .project-design { background: var(--bg3); border-left: 3px solid var(--accent2); border-radius: 0 var(--radius) var(--radius) 0; padding: 1rem 1.25rem; margin-top: 1.25rem; }
+    .project-design h5 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); margin-bottom: .75rem; font-family: 'JetBrains Mono',monospace; }
+    .project-design ul { list-style: none; }
+    .project-design li { color: var(--muted); font-size: .9rem; padding: .2rem 0; display: flex; align-items: flex-start; gap: .6rem; }
+    .project-design li::before { content: "\25B9"; color: var(--accent2); flex-shrink: 0; margin-top: .25rem; }
+    .project-design code { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: .1rem .4rem; font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--accent); }
 
     .contact-inner { text-align: center; max-width: 540px; margin: 0 auto; }
     .contact-inner p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
@@ -316,6 +322,7 @@
             <span class="tag">5주</span>
           </div>
           <h3 class="project-title">B2G Hybrid Cloud DR Infrastructure</h3>
+          <p style="color:var(--muted);font-size:.82rem;margin-top:.4rem;font-family:'JetBrains Mono',monospace;">온프레미스(도쿄 IDC) &harr; AWS 서울 &nbsp;|&nbsp; 하이브리드 재해복구 &nbsp;|&nbsp; Kubernetes + Terraform + PostgreSQL HA</p>
         </div>
         <div class="project-links">
           <a href="https://github.com/lifecheatyou/sessac-hybrid-cloud" target="_blank">
@@ -325,9 +332,15 @@
         </div>
       </div>
       <p class="project-desc">
-        국세청 홈택스를 모사한 B2G 서비스를 대상으로, 온프레미스(도쿄) &harr; AWS 서울 간 하이브리드 DR 인프라를 설계·구축한 팀 프로젝트.
-        전 직장에서 세금 신고 마감일에 홈택스 장애를 직접 경험한 것이 출발점이 됐습니다.
+        세금 신고 마감일에 트래픽이 폭증하는 <strong>B2G(기업 &rarr; 국가기관 납세·신고) 서비스</strong>를 대상으로,
+        온프레미스(도쿄 IDC 시뮬레이션) &harr; AWS 서울 간 <strong>하이브리드 재해복구(DR) 인프라</strong>를 설계·구축한 팀 프로젝트.
+        평시에는 온프레미스에서 서비스를 운영하고, <strong>트래픽 폭증(S1 Burst) 또는 장애(S2 Failover) 발생 시 AWS 서울 리전으로 자동 절체</strong>되며,
+        복구 후 Failback까지 3가지 DR 시나리오를 실제로 구현하고 RTO/RPO를 측정했습니다.
+        전 직장에서 세금 신고 마감일에 홈택스 장애를 직접 경험한 것이 이 프로젝트의 출발점이 됐습니다.
       </p>
+      <img src="https://raw.githubusercontent.com/lifecheatyou/sessac-hybrid-cloud/main/docs/architecture/architecture.gif"
+           alt="B2G Hybrid Cloud DR Infrastructure 전체 아키텍처"
+           style="width:100%;border-radius:8px;margin-bottom:1.5rem;border:1px solid var(--border);">
       <div class="project-metrics">
         <div class="metric">
           <div class="metric-val">5m 30s</div>
@@ -342,7 +355,25 @@
           <div class="metric-label">EC2 노드<br/>완전 자동 배포</div>
         </div>
       </div>
-      <div class="project-roles">
+      <div class="project-design">
+        <h5>// 설계의 이유</h5>
+        <ul>
+          <li>Route53 Health Check 기반 절체 &mdash; 별도 Failover 에이전트 없이 DNS TTL만으로 트래픽 전환, 운영 복잡도 최소화</li>
+          <li>WAL 동기복제 + DMS CDC 이중 구성 &mdash; RPO ≈ 0이 핵심 요건이었고, 복제 경로를 이중화해 단일 장애점 제거</li>
+          <li>Terraform 전 계층 모듈화 &mdash; 온프레미스·클라우드 환경 모두 코드로 재현 가능하게 해 4인 협업 시 충돌·수작업 오류 최소화</li>
+          <li>Karpenter 도입 &mdash; EC2 NodeClaim 직접 프로비저닝으로 Cluster Autoscaler 대비 스케일아웃 시간 단축, RTO 목표 달성에 기여</li>
+        </ul>
+      </div>
+      <div class="project-design">
+        <h5>// 구축 시 신경 쓴 부분</h5>
+        <ul>
+          <li>EC2 온프레미스 시뮬레이션 한계 명시 &mdash; bare-metal 성능·VRRP·전용선 재현 불가 사항을 인지하고 문서화, 실환경 차이 투명하게 공개</li>
+          <li>Terraform <code>local_file</code>로 <code>hosts.ini</code> 자동 생성 &mdash; Terraform 출력값에서 인벤토리를 동적 생성해 수동 작성 오류 원천 차단</li>
+          <li>Security Group 최소권한 &mdash; 6계층 네트워크 분리에 맞춰 각 계층 간 필요한 포트만 허용, 불필요한 경로 전면 차단</li>
+          <li>DR 시나리오별 독립 검증 &mdash; S1 Burst·S2 Failover·Failback 각각 재현·측정해 RTO 5분 30초 실측값 확보</li>
+        </ul>
+      </div>
+      <div class="project-roles" style="margin-top:1.25rem">
         <h5>// 담당 역할 (&#9733;)</h5>
         <ul>
           <li>온프레미스 인프라 설계 &mdash; 6계층 네트워크 분리, Terraform EC2 10대 프로비저닝, Security Group 최소권한</li>
