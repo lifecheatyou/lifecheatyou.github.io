@@ -3,22 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>한승재 | Cloud Infrastructure Engineer</title>
-  <meta name="description" content="Cloud &amp; Infrastructure Engineer portfolio of Sung-Jae Han" />
+  <title>한승재 | Cloud & Infrastructure Engineer</title>
+  <meta name="description" content="Cloud & Infrastructure Engineer portfolio of Sung-Jae Han" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:     #09090b; --bg2: #18181b; --bg3: #27272a;
-      --border: #3f3f46; --text: #fafafa; --muted: #a1a1aa;
-      --accent: #fb7185; --accent2: #fbbf24; --radius: 10px;
+      --bg:     #0a0e1a;
+      --bg2:    #141a2a;
+      --bg3:    #1c2438;
+      --border: #263149;
+      --text:   #d1d5db;
+      --muted:  #7a869e;
+      --accent: #06b6d4;
+      --accent2:#94a3b8;
+      --radius: 10px;
     }
     html { scroll-behavior: smooth; }
     body {
       background-color: var(--bg);
-      background-image: radial-gradient(circle, rgba(251,113,133,.04) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px);
       background-size: 28px 28px;
       color: var(--text); font-family: 'Inter','Noto Sans KR',sans-serif; font-size: 16px; line-height: 1.7;
       position: relative;
@@ -33,11 +39,11 @@
     }
     body::before {
       left: 0;
-      background: linear-gradient(to right, rgba(56,189,248,.07) 0%, transparent 100%);
+      background: linear-gradient(to right, rgba(6,182,212,.05) 0%, transparent 100%);
     }
     body::after {
       right: 0;
-      background: linear-gradient(to left, rgba(52,211,153,.06) 0%, transparent 100%);
+      background: linear-gradient(to left, rgba(148,163,184,.04) 0%, transparent 100%);
     }
     nav, section, footer { position: relative; z-index: 1; }
     a { color: var(--accent); text-decoration: none; }
@@ -45,57 +51,62 @@
 
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(13,17,23,.85); backdrop-filter: blur(12px);
+      background: rgba(10,14,26,.85); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px;
     }
     .nav-logo { font-family: 'JetBrains Mono',monospace; font-size: 1rem; color: var(--accent); font-weight: 500; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--muted); font-size: .9rem; transition: color .2s; }
-    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links a { color: var(--text); font-size: .9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
 
-    section { padding: 6rem 0; }
-    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
-    .section-label { font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
-    .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label { font-family: 'JetBrains Mono',monospace; font-size: .85rem; color: var(--accent); margin-bottom: .5rem; }
+    .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; letter-spacing: -.02em; }
 
-    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 60px; }
-    .hero-greeting { font-family: 'JetBrains Mono',monospace; color: var(--accent); font-size: 1rem; margin-bottom: 1.5rem; }
-    .hero-name { font-size: clamp(2.5rem,6vw,4rem); font-weight: 700; line-height: 1.15; margin-bottom: .5rem; }
-    .hero-name-en { font-size: clamp(1rem,2.5vw,1.3rem); color: var(--muted); font-weight: 300; margin-bottom: 1.5rem; font-family: 'JetBrains Mono',monospace; }
-    .hero-role { font-size: clamp(1.1rem,2.5vw,1.5rem); color: var(--accent2); font-weight: 500; margin-bottom: 1.5rem; }
-    .hero-desc { color: var(--muted); max-width: 720px; font-size: 1.05rem; margin-bottom: 2.5rem; }
+    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; }
+    .hero-greeting { font-family: 'JetBrains Mono',monospace; color: var(--accent); font-size: 1rem; margin-bottom: 1rem; }
+    .hero-name { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; margin-bottom: .5rem; letter-spacing: -.03em; line-height: 1.1; }
+    .hero-name-en { font-family: 'JetBrains Mono',monospace; color: var(--muted); font-size: 1.1rem; margin-bottom: 1.5rem; }
+    .hero-role { font-size: 1.5rem; color: var(--text); margin-bottom: .75rem; font-weight: 500; }
+    .hero-tagline { font-family: 'JetBrains Mono',monospace; color: var(--accent); font-size: .95rem; margin-bottom: 1.5rem; letter-spacing: .02em; }
+    .hero-desc { color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 640px; }
+
     .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem 1.4rem; border-radius: var(--radius); font-size: .9rem; font-weight: 500; cursor: pointer; transition: all .2s; border: 1px solid transparent; }
-    .btn-primary { background: var(--accent); color: #0d1117; border-color: var(--accent); }
-    .btn-primary:hover { background: #7dd3fc; border-color: #7dd3fc; text-decoration: none; color: #0d1117; }
-    .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.5rem; border-radius: var(--radius); font-weight: 500; font-size: .95rem; transition: all .2s; border: 1px solid transparent; }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-primary:hover { background: #22d3ee; text-decoration: none; }
+    .btn-outline { background: transparent; border-color: var(--border); color: var(--text); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
-    .terminal { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; font-family: 'JetBrains Mono',monospace; font-size: .85rem; margin-top: 3rem; max-width: 720px; }
-    .terminal-bar { display: flex; gap: .5rem; margin-bottom: 1rem; }
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
-    .t-prompt { color: var(--accent2); } .t-cmd { color: var(--text); } .t-out { color: var(--muted); } .t-key { color: var(--accent); }
-    .t-line { margin: .3rem 0; }
-    .t-cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); animation: blink 1s step-end infinite; vertical-align: text-bottom; margin-left: 2px; }
+    .terminal { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-top: 3rem; font-family: 'JetBrains Mono',monospace; font-size: .85rem; max-width: 640px; }
+    .terminal-bar { display: flex; gap: .4rem; margin-bottom: .8rem; padding-bottom: .8rem; border-bottom: 1px solid var(--border); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ef4444; } .dot-y { background: #eab308; } .dot-g { background: #22c55e; }
+    .t-line { display: flex; align-items: baseline; margin: .3rem 0; flex-wrap: wrap; }
+    .t-prompt { color: var(--accent); }
+    .t-cmd    { color: var(--text); }
+    .t-key    { color: var(--muted); min-width: 130px; display: inline-block; }
+    .t-out    { color: var(--text); }
+    .t-cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); margin-left: 3px; animation: blink 1s step-end infinite; }
     @keyframes blink { 50% { opacity: 0; } }
 
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-    .about-text p { color: var(--muted); margin-bottom: 1rem; }
-    .about-text p strong { color: var(--text); }
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+    .about-text p { color: var(--text); margin-bottom: 1.2rem; }
+    .about-text strong { color: var(--accent); font-weight: 600; }
     .about-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
-    .about-card h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); font-family: 'JetBrains Mono',monospace; margin-bottom: 1rem; }
+    .about-card h3 { font-size: .95rem; color: var(--accent); margin-bottom: 1rem; font-family: 'JetBrains Mono',monospace; }
     .about-card ul { list-style: none; }
-    .about-card li { color: var(--muted); font-size: .9rem; padding: .35rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: .6rem; }
-    .about-card li:last-child { border-bottom: none; }
-    .about-card li::before { content: "\25B9"; color: var(--accent2); flex-shrink: 0; }
+    .about-card li { color: var(--text); font-size: .9rem; padding: .35rem 0; display: flex; align-items: flex-start; gap: .5rem; }
+    .about-card li::before { content: "▸"; color: var(--accent); flex-shrink: 0; }
 
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 1.5rem; }
-    .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
-    .skill-group h4 { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); font-family: 'JetBrains Mono',monospace; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
-    .tag { background: var(--bg3); border: 1px solid var(--border); color: var(--text); font-size: .8rem; padding: .25rem .65rem; border-radius: 20px; font-family: 'JetBrains Mono',monospace; }
+    .skill-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 1.5rem; }
+    .skill-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: border-color .2s, transform .2s; }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .skill-card h4 { font-size: 1rem; margin-bottom: 1rem; color: var(--accent); font-family: 'JetBrains Mono',monospace; letter-spacing: .02em; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { display: inline-block; background: var(--bg3); border: 1px solid var(--border); color: var(--text); font-size: .8rem; padding: .3rem .65rem; border-radius: 20px; font-family: 'JetBrains Mono',monospace; }
     .tag.accent  { border-color: var(--accent);  color: var(--accent); }
     .tag.accent2 { border-color: var(--accent2); color: var(--accent2); }
 
@@ -105,12 +116,13 @@
     .cert-icon { font-size: 2rem; flex-shrink: 0; width: 52px; height: 52px; background: var(--bg3); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
     .cert-info h4 { font-size: 1rem; font-weight: 600; margin-bottom: .25rem; }
     .cert-info p  { font-size: .85rem; color: var(--muted); }
-    .cert-badge { display: inline-block; margin-top: .5rem; font-size: .7rem; font-family: 'JetBrains Mono',monospace; color: var(--accent2); background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.3); padding: .15rem .5rem; border-radius: 4px; }
+    .cert-badge { display: inline-block; margin-top: .5rem; font-size: .7rem; font-family: 'JetBrains Mono',monospace; color: var(--accent); background: rgba(6,182,212,.1); border: 1px solid rgba(6,182,212,.3); padding: .15rem .5rem; border-radius: 4px; }
 
-    .project-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; transition: border-color .2s, transform .2s; }
+    .project-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem; transition: border-color .2s, transform .2s; }
     .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
     .project-title { font-size: 1.25rem; font-weight: 700; }
+    .project-meta { font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--muted); margin-top: .25rem; }
     .project-links { display: flex; gap: .75rem; flex-shrink: 0; }
     .project-links a { font-size: .8rem; color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: .3rem .8rem; transition: all .2s; display: flex; align-items: center; gap: .4rem; }
     .project-links a:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
@@ -120,16 +132,10 @@
     .metric { background: var(--bg3); border-radius: 8px; padding: 1rem; text-align: center; }
     .metric-val { font-size: 1.4rem; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono',monospace; }
     .metric-label { font-size: .75rem; color: var(--muted); margin-top: .25rem; }
-    .project-roles h5 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); margin-bottom: .75rem; font-family: 'JetBrains Mono',monospace; }
+    .project-roles h5 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: .75rem; font-family: 'JetBrains Mono',monospace; }
     .project-roles ul { list-style: none; }
-    .project-roles li { color: var(--muted); font-size: .9rem; padding: .2rem 0; display: flex; align-items: flex-start; gap: .6rem; }
-    .project-roles li::before { content: "\25B9"; color: var(--accent); flex-shrink: 0; margin-top: .25rem; }
-    .project-design { background: var(--bg3); border-left: 3px solid var(--accent2); border-radius: 0 var(--radius) var(--radius) 0; padding: 1rem 1.25rem; margin-top: 1.25rem; }
-    .project-design h5 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); margin-bottom: .75rem; font-family: 'JetBrains Mono',monospace; }
-    .project-design ul { list-style: none; }
-    .project-design li { color: var(--muted); font-size: .9rem; padding: .2rem 0; display: flex; align-items: flex-start; gap: .6rem; }
-    .project-design li::before { content: "\25B9"; color: var(--accent2); flex-shrink: 0; margin-top: .25rem; }
-    .project-design code { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: .1rem .4rem; font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--accent); }
+    .project-roles li { color: var(--text); font-size: .9rem; padding: .25rem 0; display: flex; align-items: flex-start; gap: .6rem; }
+    .project-roles li::before { content: "▹"; color: var(--accent); flex-shrink: 0; margin-top: .2rem; }
 
     .contact-inner { text-align: center; max-width: 540px; margin: 0 auto; }
     .contact-inner p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
@@ -139,6 +145,7 @@
 
     @media (max-width: 640px) {
       .about-grid { grid-template-columns: 1fr; }
+      .project-metrics { grid-template-columns: 1fr; }
       nav .nav-links { display: none; }
     }
   </style>
@@ -149,9 +156,9 @@
   <span class="nav-logo">sjhan@portfolio:~$</span>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -160,11 +167,12 @@
   <div class="container">
     <p class="hero-greeting">$ whoami</p>
     <h1 class="hero-name">한승재</h1>
-    <p class="hero-name-en">Sung-Jae Han &nbsp;·&nbsp; <span style="color:var(--accent2);font-size:.9em;">회계한 엔지니어</span></p>
-    <p class="hero-role">Cloud &amp; Infrastructure Engineer</p>
+    <p class="hero-name-en">Sung-Jae Han</p>
+    <p class="hero-role">Cloud & Infrastructure Engineer</p>
+    <p class="hero-tagline">RHCSA · AWS · Terraform · Kubernetes</p>
     <p class="hero-desc">
       온프레미스부터 AWS 멀티리전까지, 인프라 전 계층을 직접 설계하고 구축합니다.<br />
-      Terraform &middot; Ansible &middot; Kubernetes로 재현 가능한 인프라를 만듭니다.
+      Terraform · Ansible · Kubernetes로 재현 가능한 인프라를 만듭니다.
     </p>
     <div class="hero-btns">
       <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
@@ -176,11 +184,12 @@
         <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
       </div>
       <div class="t-line"><span class="t-prompt">sjhan@local</span><span class="t-cmd"> ~ % cat stack.txt</span></div>
-      <div class="t-line"><span class="t-key">IaC        </span><span class="t-out">&#8594; Terraform &middot; Ansible</span></div>
-      <div class="t-line"><span class="t-key">Container  </span><span class="t-out">&#8594; Kubernetes &middot; Docker &middot; Harbor</span></div>
-      <div class="t-line"><span class="t-key">Cloud      </span><span class="t-out">&#8594; AWS (EKS &middot; RDS &middot; VPC &middot; Route53)</span></div>
-      <div class="t-line"><span class="t-key">Monitoring </span><span class="t-out">&#8594; Prometheus &middot; Grafana &middot; Loki</span></div>
-      <div class="t-line"><span class="t-key">OS         </span><span class="t-out">&#8594; RHEL &middot; Ubuntu</span></div>
+      <div class="t-line"><span class="t-key">IaC        </span><span class="t-out">→ Terraform · Ansible</span></div>
+      <div class="t-line"><span class="t-key">Container  </span><span class="t-out">→ Kubernetes · Docker</span></div>
+      <div class="t-line"><span class="t-key">Cloud      </span><span class="t-out">→ AWS (EKS · RDS · VPC · Route53)</span></div>
+      <div class="t-line"><span class="t-key">HA/Storage </span><span class="t-out">→ Pacemaker · HAProxy · NFS · SAN</span></div>
+      <div class="t-line"><span class="t-key">Monitoring </span><span class="t-out">→ Prometheus · Grafana · Loki</span></div>
+      <div class="t-line"><span class="t-key">OS         </span><span class="t-out">→ RHEL · Rocky Linux · Ubuntu</span></div>
       <div class="t-line" style="margin-top:.6rem">
         <span class="t-prompt">sjhan@local</span><span class="t-cmd"> ~ % </span><span class="t-cursor"></span>
       </div>
@@ -194,70 +203,172 @@
     <h2 class="section-title">About Me</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>전 직장에서 <strong>회계 담당자</strong>로 일하던 중, 세금 신고 마감일에 홈택스 서비스가 수 시간 장애를 겪는 상황을 직접 경험했습니다. 서버가 복구되기만을 기다리는 그 무력함이 클라우드 인프라 공부를 시작한 계기가 됐습니다.</p>
-        <p>현재는 <strong>온프레미스 &harr; AWS 하이브리드 인프라</strong> 설계와 구축에 집중하고 있습니다. Terraform으로 인프라를 코드로 관리하고, Kubernetes 위에서 서비스를 안정적으로 운영하는 것이 목표입니다.</p>
-        <p>단순히 도구를 사용하는 것을 넘어, <strong>왜 이 설계를 선택했는지</strong>를 설명할 수 있는 엔지니어가 되고자 합니다.</p>
+        <p><strong>RHCSA 기반 Linux 서버 운용</strong>과 <strong>Terraform·Ansible을 활용한 인프라 자동화</strong>에 집중하는 주니어 인프라 엔지니어입니다. 온프레미스와 AWS 하이브리드 환경에서 <strong>DR 인프라 설계·구축</strong>을 직접 수행했으며, 개인 실습으로 Rocky Linux 8노드 웹 인프라를 <strong>Pacemaker HA 클러스터</strong>까지 포함해 단독으로 구축했습니다.</p>
+        <p>합격선에 맞추기보다 모든 영역을 숙지하겠다는 자세로 Linux를 학습해 RHCSA를 취득했고, 이후 IaC와 컨테이너 오케스트레이션, 하이브리드 인프라 설계로 학습 범위를 넓혀왔습니다.</p>
+        <p>이전에는 3년간 회계 담당자로 ERP·SAP 시스템을 운용했습니다. 마감 기간 시스템 장애로 업무가 중단되는 상황을 <strong>사용자 입장에서 직접 경험</strong>하며, 시스템 안정성이 곧 비즈니스 연속성이라는 점을 체감한 것이 인프라 엔지니어로 전직한 계기입니다. 이 경험은 고객·사용자 관점에서 시스템을 이해하는 감각으로 이어지고 있습니다.</p>
       </div>
-      <div>
-        <div class="about-card">
-          <h4>// education &amp; experience</h4>
-          <ul>
-            <li>새싹 클라우드 데이터 엔지니어 과정 (2025.12 ~ 2026.04)</li>
-            <li>RHCSA — 과정 수료 전 선취득 (2026.01)</li>
-            <li>회계 실무 3년 (더존 ERP · SAP) &rarr; 인프라 엔지니어 전직</li>
-            <li>B2G 하이브리드 DR 인프라 팀 프로젝트 · GitHub <strong>414 commits</strong></li>
-          </ul>
-        </div>
+      <div class="about-card">
+        <h3>// quick facts</h3>
+        <ul>
+          <li>Cloud & Infrastructure</li>
+          <li>RHCSA · 네트워크관리사 2급</li>
+          <li>청년취업사관학교 수료</li>
+          <li>회계 실무 3년</li>
+          <li>Based in Seoul, KR</li>
+        </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <p class="section-label">// projects</p>
+    <h2 class="section-title">Projects</h2>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <div class="project-title">B2G 하이브리드 DR 인프라 구축</div>
+          <div class="project-meta">2026.03 – 2026.04 · 4인 팀 프로젝트</div>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span class="tag accent">Terraform</span>
+        <span class="tag accent">AWS</span>
+        <span class="tag">EKS</span>
+        <span class="tag">Route53</span>
+        <span class="tag">VPC Peering</span>
+        <span class="tag">Ansible</span>
+        <span class="tag">Kubernetes</span>
+      </div>
+      <p class="project-desc">국세청 홈택스를 모사한 B2G 환경을 가정해 온프레미스 ↔ AWS 하이브리드 DR 인프라를 설계·구축한 프로젝트. Tokyo ↔ Seoul 멀티리전 네트워크를 기반으로 DNS Failover 자동 전환 시나리오를 검증했습니다.</p>
+      <div class="project-metrics">
+        <div class="metric"><div class="metric-val">5m 30s</div><div class="metric-label">RTO (45% 단축)</div></div>
+        <div class="metric"><div class="metric-val">~0s</div><div class="metric-label">RPO</div></div>
+        <div class="metric"><div class="metric-val">95%+</div><div class="metric-label">가용성</div></div>
+      </div>
+      <div class="project-roles">
+        <h5>My Role</h5>
+        <ul>
+          <li>Terraform으로 AWS VPC · 서브넷 · 보안그룹 · EC2 · EKS 클러스터를 IaC로 프로비저닝</li>
+          <li>Tokyo ↔ Seoul 리전 간 VPC Peering 기반 멀티리전 네트워크 설계</li>
+          <li>Ansible 12단계 Playbook 작성 — Kubespray 기반 K8s, PostgreSQL Streaming Replication, HAProxy Active-Standby, Prometheus·Grafana·Loki 스택을 site.yml 단일 명령으로 자동 배포</li>
+          <li>Route53 Health Check 기반 DNS Failover 자동 전환 시나리오 설계 및 검증</li>
+          <li>DR Failover/Failback Case A/B 시나리오 실측 검증</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <div class="project-title">Rocky Linux 8노드 온프레미스 웹 인프라</div>
+          <div class="project-meta">개인 실습 · 단독 구축</div>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="project-tags">
+        <span class="tag accent">Rocky Linux</span>
+        <span class="tag accent">Pacemaker</span>
+        <span class="tag">Corosync</span>
+        <span class="tag">HAProxy</span>
+        <span class="tag">NVMe/TCP SAN</span>
+        <span class="tag">NFS</span>
+        <span class="tag">MySQL</span>
+      </div>
+      <p class="project-desc">Rocky Linux 9 환경에서 DNS · 로드밸런서 · 웹 3중화 · NAS · SAN · DB로 구성된 8노드 온프레미스 웹 인프라를 단독으로 설계·구축한 실습. 역할별 노드 분리와 HA 클러스터링을 직접 손으로 구현했습니다.</p>
+      <div class="project-metrics">
+        <div class="metric"><div class="metric-val">8</div><div class="metric-label">Nodes</div></div>
+        <div class="metric"><div class="metric-val">3-way</div><div class="metric-label">Web HA</div></div>
+        <div class="metric"><div class="metric-val">SAN+NAS</div><div class="metric-label">Storage</div></div>
+      </div>
+      <div class="project-roles">
+        <h5>Highlights</h5>
+        <ul>
+          <li>BIND 기반 DNS, HAProxy 로드밸런서, Apache+PHP 웹 3중화로 트래픽 분산 구성</li>
+          <li>Pacemaker + Corosync 기반 Active-Active HA 클러스터로 노드 장애 시 서비스 연속성 확보</li>
+          <li>NVMe/TCP SAN으로 DB 서버에 블록 스토리지 제공, NFS NAS와 함께 SAN·NAS 각각의 역할을 실전에서 체득</li>
+          <li>OS 설치 · 스토리지 연동 · HA 클러스터링 · 네트워크 설정 · 장애 대응까지 소프트웨어 계층 전반을 단독 구축</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section id="skills">
   <div class="container">
     <p class="section-label">// skills</p>
-    <h2 class="section-title">Tech Stack</h2>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h4>On-Premises</h4>
-        <div class="skill-tags">
-          <span class="tag accent">VMware</span><span class="tag">RHEL</span><span class="tag">Ubuntu</span><span class="tag">HAProxy</span><span class="tag">Keepalived</span><span class="tag">NFS</span>
+    <h2 class="section-title">Core Skills</h2>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h4>Cloud (AWS)</h4>
+        <div class="skill-list">
+          <span class="tag">VPC</span><span class="tag">EC2</span><span class="tag">EKS</span>
+          <span class="tag">RDS</span><span class="tag">S3</span><span class="tag">Route53</span>
+          <span class="tag">VPC Peering</span>
         </div>
       </div>
-      <div class="skill-group">
-        <h4>Cloud &mdash; AWS</h4>
-        <div class="skill-tags">
-          <span class="tag accent">EKS</span><span class="tag accent">VPC</span><span class="tag">EC2</span><span class="tag">RDS</span><span class="tag">Route53</span><span class="tag">CloudFront</span><span class="tag">ALB</span><span class="tag">WAF</span><span class="tag">DMS</span><span class="tag">ECR</span> <span class="tag">S3</span><span class="tag">IAM</span>
+      <div class="skill-card">
+        <h4>IaC / Config Mgmt</h4>
+        <div class="skill-list">
+          <span class="tag accent">Terraform</span><span class="tag accent">Ansible</span>
         </div>
       </div>
-      <div class="skill-group">
-        <h4>IaC &amp; Automation</h4>
-        <div class="skill-tags">
-          <span class="tag accent">Terraform</span><span class="tag accent">Ansible</span><span class="tag">Bash</span>
+      <div class="skill-card">
+        <h4>Linux</h4>
+        <div class="skill-list">
+          <span class="tag accent">RHEL</span><span class="tag accent">Rocky Linux</span>
+          <span class="tag">Ubuntu</span><span class="tag">System Admin</span><span class="tag">Network</span>
         </div>
       </div>
-      <div class="skill-group">
-        <h4>Container &amp; Orchestration</h4>
-        <div class="skill-tags">
-          <span class="tag accent2">Kubernetes</span><span class="tag accent2">Docker</span><span class="tag">Harbor</span><span class="tag">Helm</span><span class="tag">Karpenter</span>
+      <div class="skill-card">
+        <h4>HA / Storage</h4>
+        <div class="skill-list">
+          <span class="tag accent">Pacemaker</span><span class="tag">Corosync</span>
+          <span class="tag">HAProxy</span><span class="tag">NFS</span><span class="tag">NVMe/TCP SAN</span>
         </div>
       </div>
-      <div class="skill-group">
-        <h4>GitOps &amp; CI/CD</h4>
-        <div class="skill-tags">
-          <span class="tag">ArgoCD</span><span class="tag">GitHub Actions</span>
+      <div class="skill-card">
+        <h4>Network</h4>
+        <div class="skill-list">
+          <span class="tag">OSI 7 Layer</span><span class="tag">TCP/IP</span>
+          <span class="tag">Routing</span><span class="tag">Switching</span>
         </div>
       </div>
-      <div class="skill-group">
-        <h4>Monitoring</h4>
-        <div class="skill-tags">
-          <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Loki</span><span class="tag">Promtail</span><span class="tag">Node Exporter</span>
+      <div class="skill-card">
+        <h4>Container / Orchestration</h4>
+        <div class="skill-list">
+          <span class="tag accent">Kubernetes</span><span class="tag">Docker</span>
+          <span class="tag">Kubespray</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-card">
         <h4>Database</h4>
-        <div class="skill-tags">
-          <span class="tag">PostgreSQL 14</span><span class="tag">Streaming Replication</span><span class="tag">WAL Archive</span>
+        <div class="skill-list">
+          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+          <span class="tag">Oracle</span><span class="tag">Streaming Replication</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Monitoring</h4>
+        <div class="skill-list">
+          <span class="tag">Prometheus</span><span class="tag">Grafana</span>
+          <span class="tag">Loki</span><span class="tag">CloudWatch</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Familiar</h4>
+        <div class="skill-list">
+          <span class="tag accent2">Helm</span><span class="tag accent2">Keepalived</span>
+          <span class="tag accent2">Jenkins</span><span class="tag accent2">ArgoCD</span>
+          <span class="tag accent2">GitHub Actions</span>
         </div>
       </div>
     </div>
@@ -270,209 +381,39 @@
     <h2 class="section-title">Certifications</h2>
     <div class="cert-grid">
       <div class="cert-card">
-        <div class="cert-icon">&#127894;</div>
+        <div class="cert-icon">🐧</div>
         <div class="cert-info">
           <h4>RHCSA</h4>
-          <p>Red Hat Certified System Administrator</p>
-          <p>Red Hat Enterprise Linux 시스템 관리 및 운영</p>
-          <span class="cert-badge">Red Hat</span>
+          <p>Red Hat Certified System Administrator · 2026.01</p>
+          <span class="cert-badge">300 / 300</span>
         </div>
       </div>
       <div class="cert-card">
-        <div class="cert-icon">&#127760;</div>
+        <div class="cert-icon">🌐</div>
         <div class="cert-info">
           <h4>네트워크관리사 2급</h4>
-          <p>한국정보통신자격협회 (ICQA)</p>
-          <p>네트워크 구성 &middot; 관리 &middot; 운영</p>
-          <span class="cert-badge">ICQA</span>
+          <p>한국정보통신자격협회 · 2025.12</p>
         </div>
       </div>
       <div class="cert-card">
-        <div class="cert-icon">&#128200;</div>
-        <div class="cert-info">
-          <h4>ERP정보관리사 회계 1급</h4>
-          <p>한국생산성본부 (2021.12)</p>
-          <p>국가공인 / ERP 시스템 회계 모듈 운용</p>
-          <span class="cert-badge">Domain Knowledge</span>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">&#128176;</div>
+        <div class="cert-icon">📊</div>
         <div class="cert-info">
           <h4>재경관리사</h4>
-          <p>삼일회계법인 (2021.05)</p>
-          <p>국가공인 / 재무·세무·원가 관리 전문</p>
-          <span class="cert-badge">Domain Knowledge</span>
+          <p>삼일회계법인 · 2021.05</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="container">
-    <p class="section-label">// projects</p>
-    <h2 class="section-title">Projects</h2>
-    <div class="project-card">
-      <div class="project-header">
-        <div>
-          <div class="project-tags">
-            <span class="tag accent">Featured</span>
-            <span class="tag">팀 프로젝트 (4인)</span>
-            <span class="tag">5주</span>
-          </div>
-          <h3 class="project-title">B2G Hybrid Cloud DR Infrastructure</h3>
-          <p style="color:var(--muted);font-size:.82rem;margin-top:.4rem;font-family:'JetBrains Mono',monospace;">온프레미스(도쿄 IDC) &harr; AWS 서울 &nbsp;|&nbsp; 하이브리드 재해복구 &nbsp;|&nbsp; Kubernetes + Terraform + PostgreSQL HA</p>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/lifecheatyou/sessac-hybrid-cloud" target="_blank">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
+      <div class="cert-card">
+        <div class="cert-icon">💼</div>
+        <div class="cert-info">
+          <h4>ERP정보관리사 회계 1급</h4>
+          <p>한국생산성본부 · 2021.12</p>
         </div>
       </div>
-      <p class="project-desc">
-        세금 신고 마감일에 트래픽이 폭증하는 <strong>B2G(기업 &rarr; 국가기관 납세·신고) 서비스</strong>를 대상으로,
-        온프레미스(도쿄 IDC 시뮬레이션) &harr; AWS 서울 간 <strong>하이브리드 재해복구(DR) 인프라</strong>를 설계·구축한 팀 프로젝트.
-        평시에는 온프레미스에서 서비스를 운영하고, <strong>트래픽 폭증(S1 Burst) 또는 장애(S2 Failover) 발생 시 AWS 서울 리전으로 자동 절체</strong>되며,
-        복구 후 Failback까지 3가지 DR 시나리오를 실제로 구현하고 RTO/RPO를 측정했습니다.
-        전 직장에서 세금 신고 마감일에 홈택스 장애를 직접 경험한 것이 이 프로젝트의 출발점이 됐습니다.
-      </p>
-      <img src="https://raw.githubusercontent.com/lifecheatyou/sessac-hybrid-cloud/main/docs/architecture/architecture.gif"
-           alt="B2G Hybrid Cloud DR Infrastructure 전체 아키텍처"
-           style="width:100%;border-radius:8px;margin-bottom:1.5rem;border:1px solid var(--border);">
-      <div class="project-metrics">
-        <div class="metric">
-          <div class="metric-val">5m 30s</div>
-          <div class="metric-label">RTO 실측<br/>(목표 10분)</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">&asymp; 0s</div>
-          <div class="metric-label">RPO<br/>(WAL 동기복제)</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">10대</div>
-          <div class="metric-label">EC2 노드<br/>완전 자동 배포</div>
-        </div>
-      </div>
-      <div class="project-design">
-        <h5>// 설계의 이유</h5>
-        <ul>
-          <li>Route53 Health Check 기반 절체 &mdash; 별도 Failover 에이전트 없이 DNS TTL만으로 트래픽 전환, 운영 복잡도 최소화</li>
-          <li>WAL 동기복제 + DMS CDC 이중 구성 &mdash; RPO ≈ 0이 핵심 요건이었고, 복제 경로를 이중화해 단일 장애점 제거</li>
-          <li>Terraform 전 계층 모듈화 &mdash; 온프레미스·클라우드 환경 모두 코드로 재현 가능하게 해 4인 협업 시 충돌·수작업 오류 최소화</li>
-          <li>Karpenter 도입 &mdash; EC2 NodeClaim 직접 프로비저닝으로 Cluster Autoscaler 대비 스케일아웃 시간 단축, RTO 목표 달성에 기여</li>
-        </ul>
-      </div>
-      <div class="project-design">
-        <h5>// 구축 시 신경 쓴 부분</h5>
-        <ul>
-          <li>EC2 온프레미스 시뮬레이션 한계 명시 &mdash; bare-metal 성능·VRRP·전용선 재현 불가 사항을 인지하고 문서화, 실환경 차이 투명하게 공개</li>
-          <li>Terraform <code>local_file</code>로 <code>hosts.ini</code> 자동 생성 &mdash; Terraform 출력값에서 인벤토리를 동적 생성해 수동 작성 오류 원천 차단</li>
-          <li>Security Group 최소권한 &mdash; 6계층 네트워크 분리에 맞춰 각 계층 간 필요한 포트만 허용, 불필요한 경로 전면 차단</li>
-          <li>DR 시나리오별 독립 검증 &mdash; S1 Burst·S2 Failover·Failback 각각 재현·측정해 RTO 5분 30초 실측값 확보</li>
-        </ul>
-      </div>
-      <div class="project-roles" style="margin-top:1.25rem">
-        <h5>// 담당 역할 (&#9733;)</h5>
-        <ul>
-          <li>온프레미스 인프라 설계 &mdash; 6계층 네트워크 분리, Terraform EC2 10대 프로비저닝, Security Group 최소권한</li>
-          <li>네트워크 설계 &mdash; VPC CIDR 설계, 서브넷 계층 분리, VPC Peering, Route Table 구성부터 관리</li>
-          <li>AWS 클라우드 인프라 &mdash; EKS, RDS, DMS, CloudFront, WAF, Route53 Terraform 모듈 구성</li>
-          <li>DR 시나리오 설계·검증 &mdash; Failover/Failback 자동화, RTO/RPO 측정, S1 Burst 실측 (전체 5분 30초)</li>
-        </ul>
-      </div>
-      <div style="margin-top:1.5rem">
-        <div class="skill-tags">
-          <span class="tag accent">Terraform</span><span class="tag">Ansible</span><span class="tag accent2">Kubernetes</span>
-          <span class="tag">AWS EKS</span><span class="tag">RDS</span><span class="tag">Route53</span>
-          <span class="tag">CloudFront</span><span class="tag">DMS</span><span class="tag">HAProxy</span>
-          <span class="tag">PostgreSQL</span><span class="tag">Harbor</span><span class="tag">ArgoCD</span>
-          <span class="tag">Prometheus</span><span class="tag">Grafana</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card" style="margin-top:1.5rem">
-      <div class="project-header">
-        <div>
-          <div class="project-tags">
-            <span class="tag">개인 프로젝트</span>
-          </div>
-          <h3 class="project-title">Linux On-Premises Web Infrastructure</h3>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/lifecheatyou/linux-onprem-webinfra" target="_blank">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-      <p class="project-desc">
-        DNS·LB·WEB 3중화(Pacemaker Active-Active)·NAS·NVMe/TCP SAN·DB로 구성된 8노드 온프레미스 웹 인프라를 단독 설계·구축.
-      </p>
-      <img src="linux-arch.svg" alt="Linux On-Premises Web Infrastructure Architecture" style="width:100%;border-radius:8px;margin-bottom:1.5rem">
-      <div class="project-metrics">
-        <div class="metric">
-          <div class="metric-val">8노드</div>
-          <div class="metric-label">단독 설계·구축</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">Active-Active</div>
-          <div class="metric-label">Pacemaker HA</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">NVMe/TCP</div>
-          <div class="metric-label">SAN 스토리지</div>
-        </div>
-      </div>
-      <div style="margin-top:1.5rem">
-        <div class="skill-tags">
-          <span class="tag accent">Linux</span><span class="tag">HAProxy</span><span class="tag accent2">Pacemaker</span>
-          <span class="tag">NFS</span><span class="tag">NVMe/TCP</span><span class="tag">MySQL</span>
-          <span class="tag">BIND</span><span class="tag">WordPress</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card" style="margin-top:1.5rem">
-      <div class="project-header">
-        <div>
-          <div class="project-tags">
-            <span class="tag">개인 프로젝트</span>
-          </div>
-          <h3 class="project-title">AWS WordPress Infrastructure (Terraform + Ansible)</h3>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/lifecheatyou/aws-wordpress-infra" target="_blank">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-      <p class="project-desc">
-        Terraform으로 AWS VPC·ALB·EC2(Web×2·DB·Bastion) 전체를 IaC로 프로비저닝하고, Ansible Role 구조로 Nginx·WordPress·MySQL 서버 구성을 자동화한 실습 프로젝트.
-      </p>
-      <img src="aws-arch.svg" alt="AWS WordPress Infrastructure Architecture" style="width:100%;border-radius:8px;margin-bottom:1.5rem">
-      <div class="project-metrics">
-        <div class="metric">
-          <div class="metric-val">6개</div>
-          <div class="metric-label">서브넷<br/>(Multi-AZ)</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">EC2 4대</div>
-          <div class="metric-label">Web×2 + DB + Bastion</div>
-        </div>
-        <div class="metric">
-          <div class="metric-val">6파일</div>
-          <div class="metric-label">Terraform<br/>전체 IaC</div>
-        </div>
-      </div>
-      <div style="margin-top:1.5rem">
-        <div class="skill-tags">
-          <span class="tag accent">Terraform</span><span class="tag">Ansible</span><span class="tag accent2">AWS</span>
-          <span class="tag">VPC</span><span class="tag">ALB</span><span class="tag">EC2</span>
-          <span class="tag">Nginx</span><span class="tag">MySQL</span><span class="tag">Bastion</span><span class="tag">WordPress</span>
+      <div class="cert-card">
+        <div class="cert-icon">💻</div>
+        <div class="cert-info">
+          <h4>컴퓨터활용능력 2급</h4>
+          <p>대한상공회의소</p>
         </div>
       </div>
     </div>
@@ -480,27 +421,25 @@
 </section>
 
 <section id="contact">
-  <div class="container">
+  <div class="container contact-inner">
     <p class="section-label">// contact</p>
-    <h2 class="section-title">Contact</h2>
-    <div class="contact-inner">
-      <p>
-        클라우드 인프라 포지션을 적극적으로 찾고 있습니다.<br />
-        채용 문의 또는 협업 제안은 언제든지 환영합니다.
-      </p>
-      <div class="contact-links">
-        <a class="btn btn-primary" href="mailto:sungjaehan076@gmail.com">&#9993; sungjaehan076@gmail.com</a>
-        <a class="btn btn-outline" href="https://github.com/lifecheatyou" target="_blank">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
-        </a>
-      </div>
+    <h2 class="section-title">Get in Touch</h2>
+    <p>
+      새로운 기회와 협업 제안을 환영합니다.<br />
+      Cloud, Infrastructure, Linux 관련 대화라면 언제든지.
+    </p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:sungjaehan076@gmail.com">✉ sungjaehan076@gmail.com</a>
+      <a class="btn btn-outline" href="https://github.com/lifecheatyou" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>&copy; 2026 Sung-Jae Han &middot; Built with HTML/CSS &middot; Hosted on GitHub Pages</p>
+  <p>© 2026 Sung-Jae Han · Built with HTML/CSS · Hosted on GitHub Pages</p>
 </footer>
 
 </body>
